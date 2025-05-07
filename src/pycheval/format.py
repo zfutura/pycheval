@@ -4,8 +4,6 @@ from collections.abc import Sequence
 from gettext import ngettext
 from textwrap import indent
 
-from facturx.quantities import QUANTITY_NAMES
-
 from ._locale import setup_locale
 from .model import (
     BankAccount,
@@ -26,6 +24,7 @@ from .model import (
     TradeContact,
     TradeParty,
 )
+from .quantities import QUANTITY_NAMES
 from .type_codes import (
     DOCUMENT_TYPE_NAMES,
     PAYMENT_MEANS_NAMES,

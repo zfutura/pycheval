@@ -1,6 +1,6 @@
-# Changelog for PyFactur-X
+# Changelog for PyCheval
 
-PyFactur-X adheres to [semantic versioning](https://semver.org/).
+PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ## [Unreleased]
 

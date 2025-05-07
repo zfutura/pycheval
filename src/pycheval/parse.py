@@ -9,8 +9,6 @@ from decimal import Decimal
 from os import PathLike
 from typing import TYPE_CHECKING, Any, NamedTuple
 
-from facturx.quantities import QuantityCode
-
 from .const import (
     NS_CII,
     NS_RAM,
@@ -53,6 +51,7 @@ from .model import (
     TradeParty,
 )
 from .money import Money
+from .quantities import QuantityCode
 from .type_codes import (
     ALLOWED_MIME_TYPES,
     AllowanceChargeCode,

@@ -1,7 +1,7 @@
 from datetime import date
 from decimal import Decimal
 
-from facturx.model import (
+from pycheval.model import (
     BasicInvoice,
     BasicWLInvoice,
     EN16931Invoice,
@@ -14,9 +14,9 @@ from facturx.model import (
     Tax,
     TradeParty,
 )
-from facturx.money import Money
-from facturx.quantities import QuantityCode
-from facturx.type_codes import (
+from pycheval.money import Money
+from pycheval.quantities import QuantityCode
+from pycheval.type_codes import (
     DocumentTypeCode,
     IdentifierSchemeCode,
     TaxCategoryCode,

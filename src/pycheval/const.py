@@ -1,5 +1,5 @@
 """
-XML Utilities for PyFactur-X
+XML Utilities for PyCheval
 """
 
 URN_MINIMUM_PROFILE = "urn:factur-x.eu:1p0:minimum"

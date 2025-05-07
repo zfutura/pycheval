@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "facturx"
+name = "PyCheval"
 version = "0.1.0"
 description = "Factur-X/ZUGFeRD parsing and generation library for Python"
 authors = ["Sebastian Rittau <sebastian.rittau@zfutura.de>"]
 readme = "README.md"
 license = "Apache-2.0"
-repository = "https://github.com/zfutura/pyfacturx"
+repository = "https://github.com/zfutura/pycheval"
 keywords = ["factur-x", "zugferd", "invoice", "billing"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -13,8 +13,8 @@ classifiers = [
     "Topic :: File Formats",
     "Topic :: Office/Business :: Financial :: Accounting",
 ]
-include = [{ path = "src/facturx/locale/**/*.mo", format = ["wheel"] }]
-exclude = ["src/facturx/test_*"]
+include = [{ path = "src/pycheval/locale/**/*.mo", format = ["wheel"] }]
+exclude = ["src/pycheval/test_*"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -29,9 +29,9 @@ ruff = "^0.11.7"
 
 [tool.poe.tasks]
 i18n-extract = "pybabel extract -o messages.pot src"
-i18n-init = "pybabel init -D pyfactur-x -i messages.pot -d src/facturx/locale -l "
-i18n-update = "pybabel update -D pyfactur-x -i messages.pot -d src/facturx/locale"
-i18n-compile = "pybabel compile -D pyfactur-x -d src/facturx/locale"
+i18n-init = "pybabel init -D pycheval -i messages.pot -d src/pycheval/locale -l "
+i18n-update = "pybabel update -D pycheval -i messages.pot -d src/pycheval/locale"
+i18n-compile = "pybabel compile -D pycheval -d src/pycheval/locale"
 lint = "ruff check src"
 test = "pytest src"
 typecheck = "mypy src"

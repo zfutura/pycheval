@@ -2,4 +2,4 @@ dist
 __pycache__
 .venv*
 venv*
-src/facturx/locale/*/LC_MESSAGES/*.mo
+src/pycheval/locale/*/LC_MESSAGES/*.mo

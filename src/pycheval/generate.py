@@ -217,8 +217,8 @@ def generate_et(invoice: MinimumInvoice) -> ET.Element:
 
     >>> from datetime import date
     >>> from decimal import Decimal
-    >>> from facturx.type_codes import DocumentTypeCode
-    >>> from facturx.model import MinimumInvoice, PostalAddress, TradeParty
+    >>> from pycheval.type_codes import DocumentTypeCode
+    >>> from pycheval.model import MinimumInvoice, PostalAddress, TradeParty
     >>> invoice = MinimumInvoice(
     ...         "12345",
     ...         DocumentTypeCode.INVOICE,
@@ -257,8 +257,8 @@ def generate(invoice: MinimumInvoice) -> str:
 
     >>> from datetime import date
     >>> from decimal import Decimal
-    >>> from facturx.type_codes import DocumentTypeCode
-    >>> from facturx.model import MinimumInvoice, PostalAddress, TradeParty
+    >>> from pycheval.type_codes import DocumentTypeCode
+    >>> from pycheval.model import MinimumInvoice, PostalAddress, TradeParty
     >>> invoice = MinimumInvoice(
     ...         "12345",
     ...         DocumentTypeCode.INVOICE,

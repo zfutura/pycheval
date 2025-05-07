@@ -1,4 +1,4 @@
-"""Common types for PyFactur-X."""
+"""Common types for PyCheval."""
 
 from decimal import Decimal
 from typing import TypeAlias

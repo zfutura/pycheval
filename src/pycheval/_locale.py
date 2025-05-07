@@ -16,5 +16,5 @@ def setup_locale() -> Callable[[str], str]:
     print(_("Hello, World!"))
     """
 
-    t = gettext.translation("pyfactur-x", localedir=LOCALE_PATH, fallback=True)
+    t = gettext.translation("pycheval", localedir=LOCALE_PATH, fallback=True)
     return t.gettext
