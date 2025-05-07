@@ -22,6 +22,9 @@ Generally in scope of this library, but currently not supported are:
 * Extended and XRechnung profiles.
 * Embedding the XML in PDF files.
 
+**Warning**: This library is still in early development. The API may change
+frequently, and not all features are implemented yet.
+
 ## Usage
 
 ### Generating Factur-X XML
