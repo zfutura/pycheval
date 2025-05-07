@@ -27,6 +27,14 @@ frequently, and not all features are implemented yet.
 
 ## Usage
 
+### Installation
+
+You can install PyCheval from PyPI:
+
+```bash
+pip install PyCheval
+```
+
 ### Generating Factur-X XML
 
 PyCheval supports several profiles of Factur-X. First, you need to create
