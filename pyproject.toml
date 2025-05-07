@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "PyCheval"
-version = "0.1.0"
+version = "0.1.1.dev1"
 description = "Factur-X/ZUGFeRD parsing and generation library for Python"
 authors = ["Sebastian Rittau <sebastian.rittau@zfutura.de>"]
 readme = "README.md"
