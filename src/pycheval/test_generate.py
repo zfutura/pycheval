@@ -48,8 +48,9 @@ def _read_xml(filename: str) -> str:
 
 
 def register_all_namespaces(path: Path) -> None:
-    namespaces = dict(
-        [node for _, node in ET.iterparse(path, events=["start-ns"])]
+    # See https://github.com/python/typeshed/pull/14213 for the type ignore.
+    namespaces: dict[str, str] = dict(
+        [node for _, node in ET.iterparse(path, events=["start-ns"])]  # type: ignore[misc]
     )
     for ns in namespaces:
         ET.register_namespace(ns, namespaces[ns])

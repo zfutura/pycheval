@@ -26,7 +26,7 @@ exclude = ["src/pycheval/test_*"]
 
 [tool.poetry.group.dev.dependencies]
 babel = "~=2.17.0"
-mypy = "~=1.15.0"
+mypy = "~=1.16.0"
 poethepoet = "^0.34.0"
 pytest = "^8.3.5"
 ruff = "^0.11.7"
