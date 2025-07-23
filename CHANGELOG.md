@@ -19,6 +19,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
   `TradeParty.contacts` with `TradeParty.contact`.
 - Fix element name `AttachmentBinaryObject` in generated XML.
 - Validate that the seller has a tax registration number.
+- Validate that the tax amounts match.
 
 ## [0.1.0] - 2025-05-07
 

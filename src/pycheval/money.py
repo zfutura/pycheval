@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import locale
 import re
 from decimal import Decimal
@@ -32,19 +34,17 @@ class Money:
         self.currency = currency
 
     def __eq__(self, value: object) -> bool:
-        if isinstance(value, Money):
-            if (self.amount, self.currency) != (
-                value.amount,
-                value.currency,
-            ):
-                return False
-            if (
-                self.amount.as_tuple().exponent
-                != value.amount.as_tuple().exponent
-            ):
-                return False
-            return True
-        return NotImplemented
+        if not isinstance(value, Money):
+            return NotImplemented
+
+        if (self.amount, self.currency) != (
+            value.amount,
+            value.currency,
+        ):
+            return False
+        if self.amount.as_tuple().exponent != value.amount.as_tuple().exponent:
+            return False
+        return True
 
     def __repr__(self) -> str:
         return f"Money('{str(self.amount)}', {self.currency!r})"
@@ -77,6 +77,14 @@ class Money:
                 else self.currency
             )
             return formatted_amount + (separated and " " or "") + currency
+
+    def __mul__(self, other: Decimal) -> Money:
+        value = (self.amount * other).quantize(Decimal("1.00"))
+        return Money(value, self.currency)
+
+    def __truediv__(self, other: Decimal) -> Money:
+        value = (self.amount / other).quantize(Decimal("1.00"))
+        return Money(value, self.currency)
 
 
 _ISO_4217_RE = re.compile(r"^[A-Z]{3}$")

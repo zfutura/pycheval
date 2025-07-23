@@ -769,6 +769,16 @@ class Tax:
             raise ModelError(
                 "Invalid due date type code: {self.due_date_type_code}."
             )
+        if (
+            self.rate_percent is not None
+            and self.basis_amount * self.rate_percent / Decimal(100)
+            != self.calculated_amount
+        ):
+            raise ModelError(
+                f"Calculated amount {self.calculated_amount} does not match "
+                f"basis amount {self.basis_amount} and tax rate "
+                f"{self.rate_percent}\u2009%."
+            )
 
     def validate(self, profile: type[BasicWLInvoice]) -> None:
         """Validate the requirements for the given profile."""
