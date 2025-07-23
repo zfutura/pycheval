@@ -14,7 +14,7 @@ electronic invoicing.
 See the [Factur-X website (French)](https://www.factur-x.org/) or
 [FeRD website (German)](https://www.ferd-net.de/) for more information.
 
-Currently, this library supports reading and writing XML files according to Factur-X Version 1.0.07 (aka ZUGFeRD 2.3), as well as reading PDF files containing embedded Factur-X data. Support for embedding XML in PDF files is planned but not yet implemented.
+Currently, this library supports reading and writing XML files according to Factur-X Version 1.07.3 (aka ZUGFeRD 2.3.3), as well as reading PDF files containing embedded Factur-X data. Support for embedding XML in PDF files is planned but not yet implemented.
 
 The following Factur-X profiles are currently supported:
 
