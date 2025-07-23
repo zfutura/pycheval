@@ -4,6 +4,10 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Export enum `FileRelationship` from top-level module.
+
 ### Changed
 
 - Renamed `generate` to `generate_xml`.
