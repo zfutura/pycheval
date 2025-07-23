@@ -128,7 +128,9 @@ TEST_EN16931_INVOICE: Final = EN16931Invoice(
                 reason_code=AllowanceChargeCode.AHEAD_OF_SCHEDULE,
             ),
             charges=[
-                LineCharge(Money("0.05", "EUR")),
+                LineCharge(
+                    Money("0.05", "EUR"), reason="Complexity surcharge"
+                ),
             ],
             allowances=[
                 LineAllowance(

@@ -628,6 +628,12 @@ class LineCharge:
 
     def validate(self, profile: type[BasicInvoice]) -> None:
         """Validate the requirements for the given profile."""
+
+        if self.reason_code is None and not self.reason:
+            raise ModelError(
+                "Line charge must have a reason code or reason text."
+            )
+
         if not issubclass(profile, EN16931Invoice):
             if self.percent is not None:
                 raise ModelError(

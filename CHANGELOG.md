@@ -20,6 +20,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 - Fix element name `AttachmentBinaryObject` in generated XML.
 - Validate that the seller has a tax registration number.
 - Validate that the tax amounts match.
+- Validate that each line charge has a reason code or reason text.
 
 ## [0.1.0] - 2025-05-07
 
