@@ -473,8 +473,8 @@ def format_trade_party(trade_party: TradeParty) -> str:
         lines.append(_format_global_id(gid))
     if trade_party.legal_id:
         lines.append(_format_global_id(trade_party.legal_id))
-    for contact in trade_party.contacts:
-        lines.append(format_trade_contact(contact))
+    if trade_party.contact is not None:
+        lines.append(format_trade_contact(trade_party.contact))
 
     return "\n".join(lines)
 

@@ -1555,12 +1555,7 @@ def _parse_trade_party_optional(
     name = _find_text(party_el, f"./{{{NS_RAM}}}Name")
     description = _find_text_optional(party_el, f"./{{{NS_RAM}}}Description")
     legal_org_id, legal_org_name = _parse_legal_org(party_el)
-    contacts = [
-        _parse_trade_contact(contact_el)
-        for contact_el in party_el.findall(
-            f"./{{{NS_RAM}}}DefinedTradeContact"
-        )
-    ]
+    contact = _parse_trade_contact(party_el)
     address = _parse_address(party_el)
     email = _parse_email(party_el)
     tax_number: str | None = None
@@ -1587,7 +1582,7 @@ def _parse_trade_party_optional(
         global_ids=global_ids,
         legal_id=legal_org_id,
         trading_business_name=legal_org_name,
-        contacts=contacts,
+        contact=contact,
     )
 
 
@@ -1626,7 +1621,11 @@ def _parse_tax_reg(parent: ET.Element) -> tuple[bool, str]:
             raise InvalidXMLError(f"Invalid schemeID: {scheme}")
 
 
-def _parse_trade_contact(el: ET.Element) -> TradeContact:
+def _parse_trade_contact(parent: ET.Element) -> TradeContact | None:
+    el = parent.find(f"./{{{NS_RAM}}}DefinedTradeContact")
+    if el is None:
+        return None
+
     person_name = _find_text_optional(el, f"./{{{NS_RAM}}}PersonName")
     department_name = _find_text_optional(el, f"./{{{NS_RAM}}}DepartmentName")
     phone = _find_text_optional(

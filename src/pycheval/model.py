@@ -82,7 +82,7 @@ class TradeParty:
     description: str | None = None
     legal_id: ID | None = None
     trading_business_name: str | None = None
-    contacts: Sequence[TradeContact] = field(default_factory=list)
+    contact: TradeContact | None = None
 
     def validate(
         self,
@@ -220,7 +220,7 @@ class TradeParty:
         if which not in ("buyer", "seller") or not issubclass(
             profile, EN16931Invoice
         ):
-            if len(self.contacts) > 0:
+            if self.contact is not None:
                 raise ModelError(
                     f"{which.capitalize()} contacts are not allowed "
                     f"in the {profile.PROFILE_NAME} profile."

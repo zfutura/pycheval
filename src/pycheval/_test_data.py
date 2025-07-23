@@ -44,10 +44,12 @@ TEST_SELLER: Final = TradeParty(
     description="being formed",
     legal_id=("DE123456789", "0088"),
     trading_business_name="Great Business",
-    contacts=[
-        TradeContact("Max Mustermann", phone="+49 123 4567890"),
-        TradeContact(None, "Sales", email="foo@example.com"),
-    ],
+    contact=TradeContact(
+        "Max Mustermann",
+        "Sales",
+        phone="+49 123 4567890",
+        email="foo@example.com",
+    ),
 )
 
 TEST_BUYER: Final = TradeParty(

@@ -169,8 +169,8 @@ def _generate_trade_party(
             ET.SubElement(
                 legal_el, "ram:TradingBusinessName"
             ).text = party.trading_business_name
-    for contact in party.contacts:
-        _generate_trade_contact(el, contact)
+    if party.contact is not None:
+        _generate_trade_contact(el, party.contact)
     if party.address is not None:
         _address_element(el, party.address)
     if party.email is not None:
