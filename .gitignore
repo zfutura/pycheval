@@ -3,3 +3,4 @@ __pycache__
 .venv*
 venv*
 src/pycheval/locale/*/LC_MESSAGES/*.mo
+/*.pdf
