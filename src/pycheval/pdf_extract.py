@@ -1,35 +1,14 @@
 import sys
-from enum import Enum
 from pathlib import Path
-from typing import Final
 
 from pypdf import PdfReader
 from pypdf.errors import PdfReadError
 
 from ._locale import setup_locale
 from .exc import NoFacturXError, PDFParseError
+from .pdf_common import FACTURX_FILENAME, FileRelationship
 
 _ = setup_locale()
-
-FACTURX_FILENAME: Final = "factur-x.xml"
-XRECHNUNG_FILENAME: Final = "xrechnung.xml"
-
-
-class FileRelationship(Enum):
-    """The relationship between a PDF file and an embedded file.
-
-    * DATA: The embedded file contains data that is displayed in the PDF file.
-    * SOURCE: The embedded file is the source data for the PDF file.
-    * ALTERNATIVE: The embedded file is an alternative representation of
-      the PDF file.
-    * SUPPLEMENT: The embedded file contains information that supplements
-      the data in the PDF file.
-    """
-
-    DATA = "Data"
-    SOURCE = "Source"
-    ALTERNATIVE = "Alternative"
-    SUPPLEMENT = "Supplement"
 
 
 def extract_facturx_from_pdf(
