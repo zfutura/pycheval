@@ -13,7 +13,8 @@ from .const import (
 from .exc import NoFacturXError
 from .model import MinimumInvoice
 from .parse import parse_xml
-from .pdf_extract import FileRelationship, extract_facturx_from_pdf
+from .pdf_common import FileRelationship
+from .pdf_extract import extract_facturx_from_pdf
 
 _ = setup_locale()
 
