@@ -7,21 +7,23 @@
 
 Factur-X (also called ZUGFeRD in Germany) is a Franco-German standard for
 electronic invoices. Structured XML data is embedded in PDF-A/3 files,
-allowing invoices to be processed automatically, but still be displayed in
+allowing invoices to be processed automatically while still being displayed in
 standard PDF readers. Factur-X supports EN 16931, the European standard for
 electronic invoicing.
 
 See the [Factur-X website (French)](https://www.factur-x.org/) or
 [FeRD website (German)](https://www.ferd-net.de/) for more information.
 
-Currently, this library supports reading and writing XML files according to
-Factur-X Version 1.0.07 (aka ZUGFeRD 2.3) in the profiles up to EN 16931
-(Comfort).
+Currently, this library supports reading and writing XML files according to Factur-X Version 1.0.07 (aka ZUGFeRD 2.3), as well as reading PDF files containing embedded Factur-X data. Support for embedding XML in PDF files is planned but not yet implemented.
 
-Generally in scope of this library, but currently not supported are:
+The following Factur-X profiles are currently supported:
 
-* Extended and XRechnung profiles.
-* Embedding the XML in PDF files.
+- Minimum
+- Basic WL
+- Basic
+- EN 16931 (Comfort)
+
+Extended and XRechnung profiles are not yet supported.
 
 **Warning**: This library is still in early development. The API may change
 frequently, and not all features are implemented yet.
@@ -38,9 +40,7 @@ pip install PyCheval
 
 ### Generating Factur-X XML
 
-PyCheval supports several profiles of Factur-X. First, you need to create
-an instance of the correct profile. Then, you can pass that instance to one
-of the generation functions.
+PyCheval supports several Factur-X profile levels, each with different levels of detail and complexity. First, you need to create an instance of the appropriate profile class. Then, you can pass that instance to one of the generation functions.
 
 ```python
 from datetime import date
@@ -57,19 +57,17 @@ xml_string = generate(invoice)
 
 ### Parsing Factur-X PDF files
 
-PyCheval can parse certain Factur-X PDF files. The parser will return an
-instance of the correct profile.
+PyCheval can parse Factur-X PDF files and extract the embedded invoice data. The parser will return an instance of the appropriate profile class.
 
 ```python
 from pycheval import parse_pdf
 
-invoice = parse_pdf(path_or_xml_string)  # MinimumInvoice or a subclass
+invoice = parse_pdf("invoice.pdf")  # Returns MinimumInvoice or a subclass
 ```
 
 ### Printing invoices
 
-To print a formatted Factur-X invoice to the terminal, you can use the
-`format_invoice_as_text()` function:
+To display a formatted Factur-X invoice in the terminal, use the `format_invoice_as_text()` function:
 
 ```python
 from pycheval import format_invoice_as_text
