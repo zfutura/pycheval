@@ -612,7 +612,7 @@ def _generate_referenced_doc(
         ET.SubElement(el, "ram:Name").text = doc.name
     if doc.attachment is not None:
         content, mime_type, filename = doc.attachment
-        attach_el = ET.SubElement(el, "ram:AttachedBinaryObject")
+        attach_el = ET.SubElement(el, "ram:AttachmentBinaryObject")
         attach_el.text = b64encode(content).decode("ascii")
         attach_el.set("mimeCode", mime_type)
         attach_el.set("filename", filename)

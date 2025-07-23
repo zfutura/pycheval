@@ -17,6 +17,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 - Trade parties can a maximum of one trade contact. Replace
   `TradeParty.contacts` with `TradeParty.contact`.
+- Fix element name `AttachmentBinaryObject` in generated XML.
 - Validate that the seller has a tax registration number.
 
 ## [0.1.0] - 2025-05-07
