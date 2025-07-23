@@ -1,6 +1,7 @@
 # PyCheval – Factur-X/ZUGFeRD parsing and generation library for Python
 
 [![GitHub](https://img.shields.io/github/release/zfutura/pycheval/all.svg)](https://github.com/zfutura/pycheval/releases/)
+![Supported Python Versions](https://img.shields.io/pypi/pyversions/pycheval)
 [![Apache 2.0 License](https://img.shields.io/github/license/zfutura/pycheval)](https://github.com/zfutura/pycheval/blob/main/LICENSE)
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/zfutura/pycheval/test-and-lint.yml)](https://github.com/zfutura/pycheval/actions/workflows/test-and-lint)
 
