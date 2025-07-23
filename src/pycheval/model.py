@@ -585,7 +585,7 @@ class ProductClassification:
 
     class_code: str
     _: KW_ONLY
-    list_id: ItemTypeCode | None = None
+    list_id: ItemTypeCode
     list_version_id: str | None = None
 
 

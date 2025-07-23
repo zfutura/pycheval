@@ -110,7 +110,7 @@ TEST_EN16931_INVOICE: Final = EN16931Invoice(
                 ProductCharacteristic("color", "red"),
             ],
             product_classifications=[
-                ProductClassification("CLASS"),
+                ProductClassification("1234-5679", list_id=ItemTypeCode.ISSN),
                 ProductClassification(
                     "9781529044195",
                     list_id=ItemTypeCode.ISBN,

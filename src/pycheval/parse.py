@@ -1220,11 +1220,13 @@ def _parse_product_classification(parent: ET.Element) -> ProductClassification:
     class_code = class_code_el.text
     if class_code is None:
         raise InvalidXMLError("ClassCode element has no text")
-    list_id_s = class_code_el.attrib.get("listID")
+    if "listID" not in class_code_el.attrib:
+        raise InvalidXMLError("ClassCode element has no listID attribute")
+    list_id_s = class_code_el.attrib["listID"]
     list_version_id = class_code_el.attrib.get("listVersionID")
 
     try:
-        list_id = ItemTypeCode(list_id_s) if list_id_s is not None else None
+        list_id = ItemTypeCode(list_id_s)
     except ValueError as exc:
         raise InvalidXMLError(str(exc)) from exc
 

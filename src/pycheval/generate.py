@@ -364,8 +364,7 @@ def _generate_product_classification(
     cl_el = ET.SubElement(parent, "ram:DesignatedProductClassification")
     cc_el = ET.SubElement(cl_el, "ram:ClassCode")
     cc_el.text = classification.class_code
-    if classification.list_id is not None:
-        cc_el.attrib["listID"] = classification.list_id
+    cc_el.attrib["listID"] = classification.list_id
     if classification.list_version_id is not None:
         cc_el.attrib["listVersionID"] = classification.list_version_id
 
