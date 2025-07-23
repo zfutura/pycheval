@@ -14,9 +14,9 @@ electronic invoicing.
 See the [Factur-X website (French)](https://www.factur-x.org/) or
 [FeRD website (German)](https://www.ferd-net.de/) for more information.
 
-Currently, this library supports reading and writing XML files according to Factur-X Version 1.07.3 (aka ZUGFeRD 2.3.3), as well as reading PDF files containing embedded Factur-X data. Support for embedding XML in PDF files is planned but not yet implemented.
-
-The following Factur-X profiles are currently supported:
+This library supports reading and writing PDF and XML files according to
+Factur-X Version 1.07.3 (aka ZUGFeRD 2.3.3). The following Factur-X profiles
+are currently supported:
 
 - Minimum
 - Basic WL
@@ -38,7 +38,7 @@ You can install PyCheval from PyPI:
 pip install PyCheval
 ```
 
-### Generating Factur-X XML
+### Generating Factur-X
 
 PyCheval supports several Factur-X profile levels, each with different levels of detail and complexity. First, you need to create an instance of the appropriate profile class. Then, you can pass that instance to one of the generation functions.
 
@@ -53,6 +53,17 @@ invoice = EN16931Invoice(
     ...  # See the class documentation for all required and optional fields.
 )
 xml_string = generate_xml(invoice)
+```
+
+To embed the generated XML into a PDF, you can use the `embed_invoice_in_pdf` function:
+
+```python
+from pathlib import Path
+from pycheval import embed_invoice_in_pdf
+
+invoice = ...
+pdf_bytes = embed_invoice_in_pdf("invoice.pdf", invoice)
+Path("invoice_with_facturx.pdf").write_bytes(pdf_bytes)
 ```
 
 ### Parsing Factur-X PDF files

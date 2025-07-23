@@ -6,6 +6,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ### Added
 
+- Add `embed_facturx_file_in_pdf` and `embed_invoice_in_pdf` functions.
 - Export enum `FileRelationship` from top-level module.
 
 ### Changed
