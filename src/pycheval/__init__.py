@@ -3,8 +3,8 @@ from typing import Final
 from .exc import *  # noqa: F403
 from .format import format_invoice_as_text as format_invoice_as_text
 from .generate import (
-    generate as generate,
     generate_et as generate_et,
+    generate_xml as generate_xml,
 )
 from .model import *  # noqa: F403
 from .money import Money as Money

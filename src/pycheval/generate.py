@@ -37,8 +37,8 @@ from .type_codes import DocumentTypeCode
 from .types import ID, DocRef, OptionalQuantity, Quantity
 
 __all__ = [
-    "generate",
     "generate_et",
+    "generate_xml",
 ]
 
 #
@@ -240,7 +240,7 @@ def generate_et(invoice: MinimumInvoice) -> ET.Element:
     return root
 
 
-def generate(invoice: MinimumInvoice) -> str:
+def generate_xml(invoice: MinimumInvoice) -> str:
     """
     Generate a Factur-X invoice as XML string.
 

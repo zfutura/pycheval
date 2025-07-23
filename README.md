@@ -44,7 +44,7 @@ PyCheval supports several Factur-X profile levels, each with different levels of
 
 ```python
 from datetime import date
-from pycheval import EN16931Invoice, Money, generate
+from pycheval import EN16931Invoice, Money, generate_xml
 
 invoice = EN16931Invoice(
     invoice_number="2021-123",
@@ -52,7 +52,7 @@ invoice = EN16931Invoice(
     grand_total=Money("100.00", "EUR"),
     ...  # See the class documentation for all required and optional fields.
 )
-xml_string = generate(invoice)
+xml_string = generate_xml(invoice)
 ```
 
 ### Parsing Factur-X PDF files
