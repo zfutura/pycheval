@@ -31,6 +31,8 @@ from .type_codes import (
     TextSubjectCode,
 )
 
+TEST_PNG = b"\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\n\x00\x00\x00\n\x08\x02\x00\x00\x00\x02PX\xea\x00\x00\x00&IDAT\x18\xd3c\xfc\xff\xff?\x03n\xc0\xc4\xc0\xc0\xc0\xc0\xc8\x88E\x86\x91\x91\x81\x81\x81\x91\x08\xdd\x83X\x9al\x8f\x01\x00\xdf\x94\t\x11%\xfb\xb4\xe3\x00\x00\x00\x00IEND\xaeB`\x82"  # noqa: E501
+
 TEST_SELLER: Final = TradeParty(
     "Seller GmbH",
     PostalAddress(
@@ -159,7 +161,7 @@ TEST_EN16931_INVOICE: Final = EN16931Invoice(
             DocumentTypeCode.RELATED_DOCUMENT,
             "Test ref doc",
             "https://example.com/refdoc.txt",
-            attachment=(b"Price list", "text/plain", "refdoc.txt"),
+            attachment=(TEST_PNG, "image/png", "refdoc.png"),
             reference_type_code=ReferenceQualifierCode.PRICE_LIST_VERSION,
         ),
     ],

@@ -22,6 +22,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 - Validate that the tax amounts match.
 - Validate that each line charge has a reason code or reason text.
 - `ProductClassification` now requires a `listID` attribute.
+- Validate the MIME type of attachments.
 
 ## [0.1.0] - 2025-05-07
 

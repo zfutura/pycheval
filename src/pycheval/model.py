@@ -7,6 +7,7 @@ from decimal import Decimal
 from typing import ClassVar, Literal
 
 from .const import (
+    ALLOWED_ATTACHMENT_MIME_TYPES,
     URN_BASIC_PROFILE,
     URN_BASIC_WL_PROFILE,
     URN_EN16931_PROFILE,
@@ -681,6 +682,13 @@ class ReferenceDocument:
         if not self.type_code.is_supporting_document_type:
             raise ModelError(
                 f"Invalid reference document type code: {self.type_code}."
+            )
+        if (
+            self.attachment
+            and self.attachment[1] not in ALLOWED_ATTACHMENT_MIME_TYPES
+        ):
+            raise ModelError(
+                f"Unsupported attachment MIME type: {self.attachment[1]}."
             )
 
 
