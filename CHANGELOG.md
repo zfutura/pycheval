@@ -13,6 +13,10 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 - Renamed `generate` to `generate_xml`.
 
+### Fixed
+
+- Validate that the seller has a tax registration number.
+
 ## [0.1.0] - 2025-05-07
 
 Initial release.

@@ -91,6 +91,7 @@ class TradeParty:
         which: Literal[
             "seller", "buyer", "seller tax representative", "ship to", "payee"
         ],
+        has_representative: bool = False,
     ) -> None:
         """Validate the requirements for the given profile."""
 
@@ -132,6 +133,15 @@ class TradeParty:
                     )
 
         elif which == "seller":
+            if (
+                self.vat_id is None
+                and self.tax_number is None
+                and not has_representative
+            ):
+                raise ModelError(
+                    "Seller must have a VAT ID or tax number in the "
+                    f"{profile.PROFILE_NAME} profile."
+                )
             if not issubclass(profile, BasicWLInvoice):
                 if len(self.ids) > 0:
                     raise ModelError(
@@ -359,7 +369,12 @@ class MinimumInvoice:
     def __post_init__(self) -> None:
         if not self.type_code.is_invoice_type:
             raise ModelError(f"Invalid invoice type code: {self.type_code}.")
-        self.seller.validate(type(self), which="seller")
+        self.seller.validate(
+            type(self),
+            which="seller",
+            has_representative=isinstance(self, BasicWLInvoice)
+            and self.seller_tax_representative is not None,
+        )
         self.buyer.validate(type(self), which="buyer")
         validate_iso_4217_currency(self.currency_code)
         if type(self) is MinimumInvoice:
@@ -415,7 +430,9 @@ class BasicWLInvoice(MinimumInvoice):
             tax.validate(type(self))
         if self.payee is not None:
             self.payee.validate(type(self), which="payee")
-        if self.seller_tax_representative is not None:
+        if self.seller_tax_representative is None:
+            pass
+        else:
             self.seller_tax_representative.validate(
                 type(self), which="seller tax representative"
             )
