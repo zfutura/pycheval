@@ -1,7 +1,7 @@
 """Common types for PyCheval."""
 
 from decimal import Decimal
-from typing import TypeAlias
+from typing import Literal, TypeAlias
 
 from .quantities import QuantityCode
 from .type_codes import IdentifierSchemeCode, ReferenceQualifierCode
@@ -15,3 +15,6 @@ OptionalQuantity: TypeAlias = tuple[Decimal, QuantityCode | None]
 Attachment: TypeAlias = tuple[bytes, str, str]
 # (issuer assigned ID, reference type code)
 DocRef: TypeAlias = tuple[str | None, ReferenceQualifierCode | None]
+Profile: TypeAlias = Literal[
+    "MINIMUM", "BASIC WL", "BASIC", "EN 16931", "EXTENDED", "XRECHNUNG"
+]

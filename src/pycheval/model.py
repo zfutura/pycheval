@@ -28,7 +28,7 @@ from .type_codes import (
     TextSubjectCode,
     VATExemptionCode,
 )
-from .types import ID, Attachment, DocRef, OptionalQuantity, Quantity
+from .types import ID, Attachment, DocRef, OptionalQuantity, Profile, Quantity
 
 __all__ = [
     "MinimumInvoice",
@@ -345,7 +345,7 @@ class PostalAddress:
 class MinimumInvoice:
     """Invoice data for the MINIMUM profile."""
 
-    PROFILE_NAME: ClassVar[str] = "MINIMUM"
+    PROFILE_NAME: ClassVar[Profile] = "MINIMUM"
     PROFILE_URN: ClassVar[str] = URN_MINIMUM_PROFILE
 
     invoice_number: str
@@ -390,7 +390,7 @@ class MinimumInvoice:
 class BasicWLInvoice(MinimumInvoice):
     """Invoice data for the BASIC WL profile."""
 
-    PROFILE_NAME = "BASIC WL"
+    PROFILE_NAME: ClassVar[Profile] = "BASIC WL"
     PROFILE_URN = URN_BASIC_WL_PROFILE
 
     tax: Sequence[Tax]
@@ -454,7 +454,7 @@ class BasicWLInvoice(MinimumInvoice):
 class BasicInvoice(BasicWLInvoice):
     """Invoice data for the BASIC profile."""
 
-    PROFILE_NAME = "BASIC"
+    PROFILE_NAME: ClassVar[Profile] = "BASIC"
     PROFILE_URN = URN_BASIC_PROFILE
 
     _: KW_ONLY
@@ -484,7 +484,7 @@ class BasicInvoice(BasicWLInvoice):
 class EN16931Invoice(BasicInvoice):
     """Invoice data for the EN 16931/COMFORT profile."""
 
-    PROFILE_NAME = "EN 16931/COMFORT"
+    PROFILE_NAME: ClassVar[Profile] = "EN 16931"
     PROFILE_URN = URN_EN16931_PROFILE
 
     _: KW_ONLY

@@ -6,6 +6,10 @@ class PDFError(FacturXError):
     """Base class for PDF processing exceptions."""
 
 
+class InsufficientPDFError(PDFError):
+    """Raised when a PDF file is insufficient for Factur-X."""
+
+
 class PDFParseError(FacturXError):
     """Raise when a PDF file cannot be processed."""
 

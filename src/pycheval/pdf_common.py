@@ -3,6 +3,7 @@ from typing import Final
 
 FACTURX_FILENAME: Final = "factur-x.xml"
 XRECHNUNG_FILENAME: Final = "xrechnung.xml"
+FACTURX_XML_VERSION: Final = "1.0"
 
 
 class FileRelationship(Enum):
