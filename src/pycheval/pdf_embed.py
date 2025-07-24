@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from pypdf import PdfWriter
-from pypdf.generic import NameObject
+from pypdf.generic import NameObject, create_string_object
 
 from .generate import generate_xml
 from .model import BasicInvoice, MinimumInvoice
@@ -73,6 +73,9 @@ def _embed(
         filename=FACTURX_FILENAME, data=xml_data.encode("utf-8")
     )
     attachment = list(writer.attachment_list)[-1]
+    attachment.pdf_object[NameObject("/UF")] = create_string_object(
+        FACTURX_FILENAME
+    )
     attachment.pdf_object[NameObject("/AFRelationship")] = NameObject(
         f"/{relationship.value}"
     )
