@@ -29,7 +29,10 @@ def embed_facturx_file_in_pdf(
 ) -> bytes:
     """Embed a Factur-X XML file into a PDF file.
 
-    Returns the PDF file as a byte stream.
+    The input PDF file must already be a valid PDF/A-3 document, otherwise
+    the generated PDF won't be a valid Factur-X PDF.
+
+    Returns the modified PDF file as a byte stream.
 
     The `relationship` parameter specifies the relationship of the
     embedded file to the PDF file. It can be one of the values from
@@ -48,7 +51,10 @@ def embed_invoice_in_pdf(
 ) -> bytes:
     """Embed a Factur-X invoice into a PDF file.
 
-    Returns the PDF file as a byte stream.
+    The input PDF file must already be a valid PDF/A-3 document, otherwise
+    the generated PDF won't be a valid Factur-X PDF.
+
+    Returns the modified PDF file as a byte stream.
 
     The `relationship` parameter specifies the relationship of the
     embedded file to the PDF file. It can be one of the values from
