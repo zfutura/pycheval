@@ -6,7 +6,12 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 from pypdf import PdfWriter
-from pypdf.generic import NameObject, create_string_object
+from pypdf.generic import (
+    ArrayObject,
+    DictionaryObject,
+    NameObject,
+    create_string_object,
+)
 
 from .generate import generate_xml
 from .model import BasicInvoice, MinimumInvoice
@@ -80,6 +85,26 @@ def _embed(
         f"/{relationship.value}"
     )
     attachment._embedded_file[NameObject("/Subtype")] = NameObject("/text/xml")
+
+    # Replace file dictionary with an indirect object.
+    catalog = writer._root_object
+    names_dict = catalog["/Names"]
+    assert isinstance(names_dict, DictionaryObject)
+    embedded_files = names_dict["/EmbeddedFiles"]
+    assert isinstance(embedded_files, DictionaryObject)
+    names_array = embedded_files["/Names"]
+    assert isinstance(names_array, ArrayObject)
+    file_dict = names_array[-1]
+    assert isinstance(file_dict, DictionaryObject)
+    file_ref = writer._add_object(file_dict)
+    names_array[-1] = file_ref
+
+    # Add the file reference to the /AF array in the catalog.
+    if NameObject("/AF") not in catalog:
+        catalog[NameObject("/AF")] = ArrayObject()
+    af_array = catalog[NameObject("/AF")]
+    assert isinstance(af_array, ArrayObject)
+    af_array.append(file_ref)
 
     output = BytesIO()
     writer.write_stream(output)
