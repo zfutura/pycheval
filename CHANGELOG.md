@@ -11,7 +11,8 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ### Changed
 
-- Renamed `generate` to `generate_xml`.
+- Rename `generate` to `generate_xml`.
+- The source distribution now includes compiled `.mo` files.
 
 ### Fixed
 

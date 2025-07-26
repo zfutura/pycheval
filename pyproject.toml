@@ -21,7 +21,7 @@ dependencies = [
 GitHub = "https://github.com/zfutura/pycheval"
 
 [tool.poetry]
-include = [{ path = "src/pycheval/locale/**/*.mo", format = ["wheel"] }]
+include = [{ path = "src/pycheval/locale/**/*.mo", format = ["sdist", "wheel"] }]
 exclude = ["src/pycheval/test_*"]
 
 [tool.poetry.group.dev.dependencies]
