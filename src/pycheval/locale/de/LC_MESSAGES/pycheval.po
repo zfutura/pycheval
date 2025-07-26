@@ -6,381 +6,441 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PyCheval-X 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/zfutura/pycheval/issues\n"
-"POT-Creation-Date: 2025-05-07 13:19+0200\n"
+"POT-Creation-Date: 2025-07-26 19:05+0200\n"
 "PO-Revision-Date: 2024-08-29 14:17+0200\n"
 "Last-Translator: Sebastian Rittau <sebastian.rittau@zfutura.de>\n"
 "Language: de\n"
-"Language-Team: de <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.16.0\n"
+"Generated-By: Babel 2.17.0\n"
 
-#: src/pycheval/format.py:54
-#, python-format
+#: src/pycheval/format.py:53
+#, python-brace-format, python-format
 msgid "Date: {invoice_date:%Y-%m-%d}"
 msgstr "Datum: {invoice_date:%d.%m.%Y}"
 
-#: src/pycheval/format.py:61
-#, python-format
+#: src/pycheval/format.py:60
+#, python-brace-format, python-format
 msgid "Delivery Date: {delivery_date:%Y-%m-%d}"
 msgstr "Lieferdatum: {delivery_date:%d.%m.%Y}"
 
-#: src/pycheval/format.py:68
-#, python-format
+#: src/pycheval/format.py:67
+#, python-brace-format, python-format
 msgid "Billing Period: {start:%Y-%m-%d}–{end:%Y-%m-%d}"
 msgstr "Abrechnungszeitraum: {start:%d.%m.%Y}–{end:%d.%m.%Y}"
 
-#: src/pycheval/format.py:74
+#: src/pycheval/format.py:73
 msgid "Sender"
 msgstr "Absender"
 
-#: src/pycheval/format.py:76
+#: src/pycheval/format.py:75
 msgid "Recipient"
 msgstr "Empfänger"
 
-#: src/pycheval/format.py:82
+#: src/pycheval/format.py:81
 msgid "Ship To"
 msgstr "Lieferadresse"
 
-#: src/pycheval/format.py:87
+#: src/pycheval/format.py:86
 msgid "Seller's Tax Representative"
 msgstr "Steuerberater des Verkäufers"
 
-#: src/pycheval/format.py:93
+#: src/pycheval/format.py:92
 msgid "References"
 msgstr "Referenzen"
 
-#: src/pycheval/format.py:98
+#: src/pycheval/format.py:97
 msgid "Notes"
 msgstr "Bemerkungen"
 
-#: src/pycheval/format.py:103
+#: src/pycheval/format.py:102
 msgid "Line Items"
 msgstr "Positionen"
 
-#: src/pycheval/format.py:109
+#: src/pycheval/format.py:108
 msgid "Surcharges"
 msgstr "Aufschläge"
 
-#: src/pycheval/format.py:114
+#: src/pycheval/format.py:113
 msgid "Deductions"
 msgstr "Abschläge"
 
-#: src/pycheval/format.py:118 src/pycheval/format.py:315
+#: src/pycheval/format.py:117 src/pycheval/format.py:314
 msgid "Tax"
 msgstr "Steuern"
 
-#: src/pycheval/format.py:122
+#: src/pycheval/format.py:121
 msgid "Totals"
 msgstr "Beträge"
 
-#: src/pycheval/format.py:138
-#, python-format
+#: src/pycheval/format.py:137
+#, python-brace-format, python-format
 msgid "Related Invoice: {number} ({date:%Y-%m-%d})"
 msgstr "Bezugsrechnung: {number} ({date:%d.%m.%Y})"
 
-#: src/pycheval/format.py:144
+#: src/pycheval/format.py:143
+#, python-brace-format
 msgid "Related Invoice: {number}"
 msgstr "Bezugsrechnung: {number}"
 
-#: src/pycheval/format.py:147
+#: src/pycheval/format.py:146
+#, python-brace-format
 msgid "Contract ID: {}"
 msgstr "Vertragsnummer: {}"
 
-#: src/pycheval/format.py:151
+#: src/pycheval/format.py:150
+#, python-brace-format
 msgid "Procuring Project: {id} {name}"
 msgstr "Beschaffendes Projekt: {id} {name}"
 
-#: src/pycheval/format.py:155
+#: src/pycheval/format.py:154
+#, python-brace-format
 msgid "Business Process ID: {}"
 msgstr "Geschäftsprozess-ID: {}"
 
-#: src/pycheval/format.py:158
+#: src/pycheval/format.py:157
+#, python-brace-format
 msgid "Buyer Reference: {}"
 msgstr "Empfängerreferenz: {}"
 
-#: src/pycheval/format.py:160
+#: src/pycheval/format.py:159
+#, python-brace-format
 msgid "Buyer Order ID: {}"
 msgstr "Bestellnummer des Empfängers: {}"
 
-#: src/pycheval/format.py:162
+#: src/pycheval/format.py:161
+#, python-brace-format
 msgid "Seller Order ID: {}"
 msgstr "Bestellnummer des Verkäufers: {}"
 
-#: src/pycheval/format.py:165
+#: src/pycheval/format.py:164
+#, python-brace-format
 msgid "Despatch Advice ID: {}"
 msgstr "Versandhinweis-ID: {}"
 
-#: src/pycheval/format.py:169
+#: src/pycheval/format.py:168
+#, python-brace-format
 msgid "Receiving Advice ID: {}"
 msgstr "Empfangshinweis-ID: {}"
 
-#: src/pycheval/format.py:173
+#: src/pycheval/format.py:172
+#, python-brace-format
 msgid "Receiver Accounting ID: {}"
 msgstr "Buchhaltungsreferenz des Empfängers: {}"
 
-#: src/pycheval/format.py:184
+#: src/pycheval/format.py:183
+#, python-brace-format
 msgid "{id} {net_price} {quantity} {total_price}"
 msgstr "{id} {net_price} {quantity} {total_price}"
 
-#: src/pycheval/format.py:197
+#: src/pycheval/format.py:196
+#, python-brace-format
 msgid "  Basis Quantity: {}"
 msgstr "  Basismenge: {}"
 
-#: src/pycheval/format.py:203
+#: src/pycheval/format.py:202
+#, python-brace-format
 msgid "  VAT: {tax_rate} % ({tax_category})"
 msgstr "  USt: {tax_rate} % ({tax_category})"
 
-#: src/pycheval/format.py:223
+#: src/pycheval/format.py:222
 msgid "Surcharge"
 msgstr "Aufschlag"
 
-#: src/pycheval/format.py:223
+#: src/pycheval/format.py:222
 msgid "Deduction"
 msgstr "Abschlag"
 
-#: src/pycheval/format.py:226
+#: src/pycheval/format.py:225
+#, python-brace-format
 msgid "  {type}: {basis} {percent:>4} % {amount}"
 msgstr "  {type}: {basis} {percent:>4} % {amount}"
 
-#: src/pycheval/format.py:235 src/pycheval/format.py:291
+#: src/pycheval/format.py:234 src/pycheval/format.py:290
+#, python-brace-format
 msgid "  Reason: {reason} ({code})"
 msgstr "  Grund: {reason} ({code})"
 
-#: src/pycheval/format.py:240 src/pycheval/format.py:296
+#: src/pycheval/format.py:239 src/pycheval/format.py:295
+#, python-brace-format
 msgid "  Reason: {reason}"
 msgstr "  Grund: {reason}"
 
-#: src/pycheval/format.py:243 src/pycheval/format.py:298
+#: src/pycheval/format.py:242 src/pycheval/format.py:297
+#, python-brace-format
 msgid "  Reason: {code}"
 msgstr "  Grund: {code}"
 
-#: src/pycheval/format.py:267
+#: src/pycheval/format.py:266
 msgid "Basis"
 msgstr "Grundbetrag"
 
-#: src/pycheval/format.py:268
+#: src/pycheval/format.py:267
 msgid "Amount"
 msgstr "Betrag"
 
-#: src/pycheval/format.py:270
+#: src/pycheval/format.py:269
+#, python-brace-format
 msgid "{basis} |   %    |   Tax    | {amount}"
 msgstr "{basis} |   %    |  Steuer  | {amount}"
 
 #: src/pycheval/format.py:278
+#, python-brace-format
 msgid "{basis} | {percent:>4} % | {tax_rate} % ({tax_category}) | {amount}"
 msgstr "{basis} | {percent:>4} % | {tax_rate} % ({tax_category}) | {amount}"
 
-#: src/pycheval/format.py:306
+#: src/pycheval/format.py:305
+#, python-brace-format
 msgid "Tax Currency: {}"
 msgstr "Steuerwährung: {}"
 
-#: src/pycheval/format.py:314
+#: src/pycheval/format.py:313
 msgid "Net"
 msgstr "Nettobetrag"
 
-#: src/pycheval/format.py:317
+#: src/pycheval/format.py:316
+#, python-brace-format
 msgid "Cat | Rate | {net} | {tax}"
 msgstr "Kat | Satz | {net} | {tax}"
 
-#: src/pycheval/format.py:323
+#: src/pycheval/format.py:322
+#, python-brace-format
 msgid "{category:>2}  | {rate:>2} % | {basis} | {tax}"
 msgstr "{category:>2}  | {rate:>2} % | {basis} | {tax}"
 
-#: src/pycheval/format.py:333
+#: src/pycheval/format.py:332
+#, python-brace-format
 msgid "  Exemption Reason: {reason} ({code})"
 msgstr "  Befreiungsgrund: {reason} ({code})"
 
-#: src/pycheval/format.py:338
+#: src/pycheval/format.py:337
+#, python-brace-format
 msgid "  Exemption Reason: {reason}"
 msgstr "  Befreiungsgrund: {reason}"
 
-#: src/pycheval/format.py:342
+#: src/pycheval/format.py:341
+#, python-brace-format
 msgid "  Exemption Reason: {code}"
 msgstr "  Befreiungsgrund: {code}"
 
 #: src/pycheval/format.py:351
-#, python-format
+#, python-brace-format, python-format
 msgid "  Tax Point Date: {date:%Y-%m-%d} ({time_code})"
 msgstr "  Steuerzeitpunkt: {date:%d.%m.%Y} ({time_code})"
 
-#: src/pycheval/format.py:358
-#, python-format
+#: src/pycheval/format.py:357
+#, python-brace-format, python-format
 msgid "  Tax Point Date: {date:%Y-%m-%d}"
 msgstr "  Steuerzeitpunkt: {date:%d.%m.%Y}"
 
-#: src/pycheval/format.py:363
+#: src/pycheval/format.py:362
+#, python-brace-format
 msgid "  Due Date Type: {time_code}"
 msgstr "  Fälligkeitart: {time_code}"
 
-#: src/pycheval/format.py:376
+#: src/pycheval/format.py:375
+#, python-brace-format
 msgid "Line Total (net): {}"
 msgstr "Summe der Positionen (netto): {}"
 
-#: src/pycheval/format.py:381
+#: src/pycheval/format.py:380
+#, python-brace-format
 msgid "Surcharges: {}"
 msgstr "Aufschläge: {}"
 
-#: src/pycheval/format.py:385
+#: src/pycheval/format.py:384
+#, python-brace-format
 msgid "Deductions: {}"
 msgstr "Abschläge: {}"
 
-#: src/pycheval/format.py:387
+#: src/pycheval/format.py:386
+#, python-brace-format
 msgid "Net: {}"
 msgstr "Nettobetrag: {}"
 
-#: src/pycheval/format.py:389
+#: src/pycheval/format.py:388
+#, python-brace-format
 msgid "VAT: {}"
 msgstr "USt: {}"
 
-#: src/pycheval/format.py:390
+#: src/pycheval/format.py:389
+#, python-brace-format
 msgid "Gross: {}"
 msgstr "Bruttobetrag: {}"
 
-#: src/pycheval/format.py:392
+#: src/pycheval/format.py:391
+#, python-brace-format
 msgid "Prepaid: {}"
 msgstr "Anzahlungen: {}"
 
-#: src/pycheval/format.py:394
+#: src/pycheval/format.py:393
+#, python-brace-format
 msgid "Rounding amount: {}"
 msgstr "Rundungsbetrag: {}"
 
-#: src/pycheval/format.py:395
+#: src/pycheval/format.py:394
+#, python-brace-format
 msgid "Amount payable: {}"
 msgstr "Restbetrag: {}"
 
-#: src/pycheval/format.py:403
+#: src/pycheval/format.py:402
 msgid "Payee"
 msgstr "Zahlungsempfänger"
 
-#: src/pycheval/format.py:411
+#: src/pycheval/format.py:410
 msgid "Payment Means"
 msgstr "Zahlungsart"
 
-#: src/pycheval/format.py:416
+#: src/pycheval/format.py:415
+#, python-brace-format
 msgid "SEPA Reference: {}"
 msgstr "SEPA-Referenz: {}"
 
-#: src/pycheval/format.py:420
+#: src/pycheval/format.py:419
+#, python-brace-format
 msgid "Payment Reference: {}"
 msgstr "Zahlungsreferenz: {}"
 
-#: src/pycheval/format.py:424
+#: src/pycheval/format.py:423
 msgid "Payment Terms"
 msgstr "Zahlungsbedingungen"
 
-#: src/pycheval/format.py:443
+#: src/pycheval/format.py:442
+#, python-brace-format
 msgid "{quantity} {unit}"
 msgstr "{quantity} {unit}"
 
-#: src/pycheval/format.py:452
+#: src/pycheval/format.py:451
+#, python-brace-format
 msgid "{name} ({trading_business_name})"
 msgstr "{name} ({trading_business_name})"
 
-#: src/pycheval/format.py:466
+#: src/pycheval/format.py:465
+#, python-brace-format
 msgid "VAT ID: {}"
 msgstr "USt-ID: {}"
 
-#: src/pycheval/format.py:468
+#: src/pycheval/format.py:467
+#, python-brace-format
 msgid "Tax Number: {}"
 msgstr "Steuernummer: {}"
 
-#: src/pycheval/format.py:470
+#: src/pycheval/format.py:469
+#, python-brace-format
 msgid "ID: {}"
 msgstr "ID: {}"
 
-#: src/pycheval/format.py:472
+#: src/pycheval/format.py:471
+#, python-brace-format
 msgid "IDs: {}"
 msgstr "ID: {}"
 
-#: src/pycheval/format.py:503
+#: src/pycheval/format.py:502
 msgid "Contact:"
 msgstr "Kontakt:"
 
-#: src/pycheval/format.py:509
+#: src/pycheval/format.py:508
+#, python-brace-format
 msgid "  Phone: {phone}"
 msgstr "  Telefon: {phone}"
 
-#: src/pycheval/format.py:518
+#: src/pycheval/format.py:517
+#, python-brace-format
 msgid "{subject_code}: {content}"
 msgstr "{subject_code}: {content}"
 
-#: src/pycheval/format.py:528
+#: src/pycheval/format.py:527
+#, python-brace-format
 msgid "Payment Means: {}"
 msgstr "Zahlungsart: {}"
 
-#: src/pycheval/format.py:535
+#: src/pycheval/format.py:534
+#, python-brace-format
 msgid "BIC: {}"
 msgstr "BIC: {}"
 
-#: src/pycheval/format.py:539
+#: src/pycheval/format.py:538
+#, python-brace-format
 msgid "Credit card: {} ({})"
 msgstr "Kreditkarte: {}"
 
-#: src/pycheval/format.py:541
+#: src/pycheval/format.py:540
+#, python-brace-format
 msgid "Credit card: {}"
 msgstr "Kreditkarte: {}"
 
-#: src/pycheval/format.py:543
+#: src/pycheval/format.py:542
+#, python-brace-format
 msgid "Payer IBAN: {}"
 msgstr "IBAN des Zahlers: {}"
 
-#: src/pycheval/format.py:552
+#: src/pycheval/format.py:551
+#, python-brace-format
 msgid "IBAN: {}"
 msgstr "IBAN: {}"
 
-#: src/pycheval/format.py:554
+#: src/pycheval/format.py:553
+#, python-brace-format
 msgid "Account owner: {}"
 msgstr "Kontoinhaber: {}"
 
-#: src/pycheval/format.py:556
+#: src/pycheval/format.py:555
+#, python-brace-format
 msgid "Bank: {}"
 msgstr "Bank: {}"
 
-#: src/pycheval/format.py:564
-#, python-format
+#: src/pycheval/format.py:563
+#, python-brace-format, python-format
 msgid "Due Date: {due_date:%Y-%m-%d}"
 msgstr "Fälligkeitsdatum: {due_date:%d.%m.%Y}"
 
-#: src/pycheval/format.py:568
+#: src/pycheval/format.py:567
+#, python-brace-format
 msgid "Direct Debit Mandate ID: {}"
 msgstr "Mandatsnummer für Lastschrift: {}"
 
-#: src/pycheval/format.py:584
+#: src/pycheval/format.py:583
+#, python-brace-format
 msgid "  Reference Qualifier: {}"
 msgstr "  Referenzqualifizierer: {}"
 
-#: src/pycheval/format.py:589
+#: src/pycheval/format.py:588
+#, python-brace-format
 msgid "  Name: {}"
 msgstr "  Name: {}"
 
-#: src/pycheval/format.py:591
+#: src/pycheval/format.py:590
+#, python-brace-format
 msgid "  URL: {}"
 msgstr "  URL: {}"
 
-#: src/pycheval/format.py:595
+#: src/pycheval/format.py:594
+#, python-brace-format
 msgid "  Attachment: {filename} ({mime_type})"
 msgstr "  Anhang: {filename} ({mime_type})"
 
-#: src/pycheval/format.py:606
+#: src/pycheval/format.py:605
+#, python-brace-format
 msgid "Global ID: {}"
 msgstr "Globale ID: {}"
 
-#: src/pycheval/format.py:609
+#: src/pycheval/format.py:608
+#, python-brace-format
 msgid "{id_type}: {id}"
 msgstr "{id_type}: {id}"
 
-#: src/pycheval/pdf_extract.py:47
+#: src/pycheval/pdf_extract.py:26
+#, python-brace-format
 msgid "Cannot read PDF file: {}"
 msgstr ""
 
-#: src/pycheval/pdf_extract.py:61 src/pycheval/pdf_extract.py:64
+#: src/pycheval/pdf_extract.py:40 src/pycheval/pdf_extract.py:43
 msgid "No Factur-X invoice found in PDF file"
 msgstr ""
 
-#: src/pycheval/pdf_parse.py:105
+#: src/pycheval/pdf_parse.py:106
 msgid "Invalid relationship for Factur-X Minimum invoice"
 msgstr ""
 
