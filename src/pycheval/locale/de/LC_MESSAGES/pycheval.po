@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PyCheval-X 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/zfutura/pycheval/issues\n"
 "POT-Creation-Date: 2025-07-26 19:05+0200\n"
-"PO-Revision-Date: 2024-08-29 14:17+0200\n"
+"PO-Revision-Date: 2025-07-26 19:11+0200\n"
 "Last-Translator: Sebastian Rittau <sebastian.rittau@zfutura.de>\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -434,15 +434,15 @@ msgstr "{id_type}: {id}"
 #: src/pycheval/pdf_extract.py:26
 #, python-brace-format
 msgid "Cannot read PDF file: {}"
-msgstr ""
+msgstr "Kann PDF-Datei nicht lesen: {}"
 
 #: src/pycheval/pdf_extract.py:40 src/pycheval/pdf_extract.py:43
 msgid "No Factur-X invoice found in PDF file"
-msgstr ""
+msgstr "Keine Factur-X-Rechnung in der PDF-Datei gefunden"
 
 #: src/pycheval/pdf_parse.py:106
 msgid "Invalid relationship for Factur-X Minimum invoice"
-msgstr ""
+msgstr "Ungültige Beziehung für Factur-X-Minimum-Rechnung"
 
 #: src/pycheval/quantities.py:35
 msgid "unit"
@@ -546,11 +546,11 @@ msgstr "Zollinformationen"
 
 #: src/pycheval/type_codes.py:139
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: src/pycheval/type_codes.py:163
 msgid "Instrument not defined"
-msgstr ""
+msgstr "Zahlmethode nicht definiert"
 
 #: src/pycheval/type_codes.py:164
 msgid "Species"
