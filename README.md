@@ -86,3 +86,20 @@ from pycheval import format_invoice_as_text
 invoice = EN16931Invoice(...)
 print(format_invoice_as_text(invoice))
 ```
+
+### License and Warranty
+
+**Copyright © ZFutura GmbH**
+
+This project is licensed under the [Apache License 2.0](LICENSE).
+
+**Disclaimer**: The software is provided "as is", without warranty of any kind. 
+The authors are not liable for any damages arising from the use of this
+software. In particular, the authors do not guarantee that invoices generated
+or parsed by this library will be valid or compliant with any standards, nor
+that they are suitable for any specific purpose. 
+
+**Important**: It is the user's responsibility to ensure that generated
+invoices meet all legal and regulatory requirements for their jurisdiction.
+
+See the [LICENSE](LICENSE) file for the complete disclaimer and license terms.
