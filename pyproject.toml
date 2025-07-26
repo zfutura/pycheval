@@ -31,14 +31,33 @@ poethepoet = "^0.36.0"
 pytest = "^8.4.1"
 ruff = "^0.12.1"
 
-[tool.poe.tasks]
-i18n-extract = "pybabel extract -o messages.pot src"
-i18n-init = "pybabel init -D pycheval -i messages.pot -d src/pycheval/locale -l "
-i18n-update = "pybabel update -D pycheval -i messages.pot -d src/pycheval/locale"
-i18n-compile = "pybabel compile -D pycheval -d src/pycheval/locale"
-lint = "ruff check src"
-test = "pytest src"
-typecheck = "mypy src"
+[tool.poe.tasks.lint]
+cmd = "ruff check src"
+help = "Lint the source code with ruff"
+
+[tool.poe.tasks.test]
+cmd = "pytest src"
+help = "Run unit and integration tests with pytest"
+
+[tool.poe.tasks.typecheck]
+cmd = "mypy src"
+help = "Type check the source code with mypy"
+
+[tool.poe.tasks.i18n-extract]
+cmd = "pybabel extract -o messages.pot src"
+help = "Extract messages for translation"
+
+[tool.poe.tasks.i18n-init]
+cmd = "pybabel init -D pycheval -i messages.pot -d src/pycheval/locale -l "
+help = "Initialize translation files for a new language"
+
+[tool.poe.tasks.i18n-update]
+cmd = "pybabel update -D pycheval -i messages.pot -d src/pycheval/locale"
+help = "Update translation files from the template"
+
+[tool.poe.tasks.i18n-compile]
+cmd = "pybabel compile -D pycheval -d src/pycheval/locale"
+help = "Compile translation files"
 
 [tool.ruff]
 target-version = "py312"
