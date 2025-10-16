@@ -462,6 +462,7 @@ class BasicInvoice(BasicWLInvoice):
     line_items: Sequence[LineItem]  # BG-25
 
     def __post_init__(self) -> None:
+        super().__post_init__()
         if len(self.line_items) < 1:
             raise ModelError("At least one line item is required.")
         if type(self) is BasicInvoice:

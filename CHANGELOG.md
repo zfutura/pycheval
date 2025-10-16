@@ -10,6 +10,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ### Fixed
 
+- BASIC and EN16931 invoices did not validate all fields correctly.
 - Don't crash when embedding a Factur-X file in a PDF that already has
   an embedded file.
 
