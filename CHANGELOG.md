@@ -8,6 +8,11 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 - Improved debugging information when embedding Factur-X files in PDFs.
 
+### Fixed
+
+- Don't crash when embedding a Factur-X file in a PDF that already has
+  an embedded file.
+
 ## 0.2.1 – 2025-10-16
 
 ### Changed

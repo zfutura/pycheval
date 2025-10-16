@@ -10,6 +10,7 @@ from pypdf import PdfWriter
 from pypdf.generic import (
     ArrayObject,
     DictionaryObject,
+    IndirectObject,
     NameObject,
     create_string_object,
 )
@@ -204,18 +205,19 @@ def _add_attachment(
         f"/Names is {type(names_array)}"
     )
     file_dict = names_array[-1]
-    assert isinstance(file_dict, DictionaryObject), (
-        f"file_dict is {type(file_dict)}"
-    )
-    file_ref = writer._add_object(file_dict)
-    names_array[-1] = file_ref
+    if not isinstance(file_dict, IndirectObject):
+        assert isinstance(file_dict, DictionaryObject), (
+            f"file_dict is {type(file_dict)}"
+        )
+        file_ref = writer._add_object(file_dict)
+        names_array[-1] = file_ref
 
-    # Add the file reference to the /AF array in the catalog.
-    if NameObject("/AF") not in catalog:
-        catalog[NameObject("/AF")] = ArrayObject()
-    af_array = catalog[NameObject("/AF")]
-    assert isinstance(af_array, ArrayObject), f"/AF is {type(af_array)}"
-    af_array.append(file_ref)
+        # Add the file reference to the /AF array in the catalog.
+        if NameObject("/AF") not in catalog:
+            catalog[NameObject("/AF")] = ArrayObject()
+        af_array = catalog[NameObject("/AF")]
+        assert isinstance(af_array, ArrayObject), f"/AF is {type(af_array)}"
+        af_array.append(file_ref)
 
 
 def main() -> None:
