@@ -192,13 +192,21 @@ def _add_attachment(
     # Replace file dictionary with an indirect object.
     catalog = writer._root_object
     names_dict = catalog["/Names"]
-    assert isinstance(names_dict, DictionaryObject)
+    assert isinstance(names_dict, DictionaryObject), (
+        f"/Names is {type(names_dict)}"
+    )
     embedded_files = names_dict["/EmbeddedFiles"]
-    assert isinstance(embedded_files, DictionaryObject)
+    assert isinstance(embedded_files, DictionaryObject), (
+        f"/EmbeddedFiles is {type(embedded_files)}"
+    )
     names_array = embedded_files["/Names"]
-    assert isinstance(names_array, ArrayObject)
+    assert isinstance(names_array, ArrayObject), (
+        f"/Names is {type(names_array)}"
+    )
     file_dict = names_array[-1]
-    assert isinstance(file_dict, DictionaryObject)
+    assert isinstance(file_dict, DictionaryObject), (
+        f"file_dict is {type(file_dict)}"
+    )
     file_ref = writer._add_object(file_dict)
     names_array[-1] = file_ref
 
@@ -206,7 +214,7 @@ def _add_attachment(
     if NameObject("/AF") not in catalog:
         catalog[NameObject("/AF")] = ArrayObject()
     af_array = catalog[NameObject("/AF")]
-    assert isinstance(af_array, ArrayObject)
+    assert isinstance(af_array, ArrayObject), f"/AF is {type(af_array)}"
     af_array.append(file_ref)
 
 
