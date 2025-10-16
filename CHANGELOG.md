@@ -6,6 +6,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ### Changed
 
+- Use PEP 735 dependency groups for development dependencies.
 - Bump `pypdf` dependency to `>= 6.1.1, < 7`.
 
 ## [0.2.0] - 2025-07-26
