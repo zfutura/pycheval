@@ -4,6 +4,10 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Bump `pypdf` dependency to `>= 6.1.1, < 7`.
+
 ## [0.2.0] - 2025-07-26
 
 ### Added
