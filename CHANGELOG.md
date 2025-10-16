@@ -2,16 +2,16 @@
 
 PyCheval adheres to [semantic versioning](https://semver.org/).
 
-## [Unreleased]
+## Unreleased
 
-## [0.2.1] - 2025-10-16
+## 0.2.1 – 2025-10-16
 
 ### Changed
 
 - Use PEP 735 dependency groups for development dependencies.
 - Bump `pypdf` dependency to `>= 6.1.1, < 7`.
 
-## [0.2.0] - 2025-07-26
+## 0.2.0 – 2025-07-26
 
 ### Added
 
@@ -34,6 +34,6 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 - `ProductClassification` now requires a `listID` attribute.
 - Validate the MIME type of attachments.
 
-## [0.1.0] - 2025-05-07
+## 0.1.0 – 2025-05-07
 
 Initial release.
