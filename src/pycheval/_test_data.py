@@ -166,7 +166,7 @@ TEST_EN16931_INVOICE: Final = EN16931Invoice(
         ),
     ],
     procuring_project=("PROJ-123", "Project X"),
-    sepa_reference="ABC-dddd",
+    seller_sepa_creditor_id="ABC-dddd",
     payment_means=[
         PaymentMeans(PaymentMeansCode.BANK_PAYMENT),
     ],

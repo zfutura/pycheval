@@ -410,7 +410,7 @@ class BasicWLInvoice(MinimumInvoice):
     contract_id: str | None = None
     ship_to: TradeParty | None = None
     despatch_advice_id: str | None = None
-    sepa_reference: str | None = None
+    seller_sepa_creditor_id: str | None = None
     payment_reference: str | None = None
     payment_means: Sequence[PaymentMeans] = field(default_factory=list)
     payment_terms: PaymentTerms | None = None

@@ -404,15 +404,17 @@ def _format_payment(invoice: BasicWLInvoice) -> str:
         ]
     if (
         invoice.payment_means
-        or invoice.sepa_reference
+        or invoice.seller_sepa_creditor_id
         or invoice.payment_reference
     ):
         lines.append(_header(_("Payment Means")))
         for means in invoice.payment_means:
             lines.append(format_payment_means(means))
-        if invoice.sepa_reference:
+        if invoice.seller_sepa_creditor_id:
             lines.append(
-                _("SEPA Reference: {}").format(invoice.sepa_reference)
+                _("Seller SEPA Creditor ID: {}").format(
+                    invoice.seller_sepa_creditor_id
+                )
             )
         if invoice.payment_reference:
             lines.append(

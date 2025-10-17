@@ -656,10 +656,10 @@ def _generate_settlement(parent: ET.Element, invoice: MinimumInvoice) -> None:
         parent, "ram:ApplicableHeaderTradeSettlement"
     )
     if isinstance(invoice, BasicWLInvoice):
-        if invoice.sepa_reference is not None:
+        if invoice.seller_sepa_creditor_id is not None:
             ET.SubElement(
                 settlement_el, "ram:CreditorReferenceID"
-            ).text = invoice.sepa_reference
+            ).text = invoice.seller_sepa_creditor_id
         if invoice.payment_reference is not None:
             ET.SubElement(
                 settlement_el, "ram:PaymentReference"

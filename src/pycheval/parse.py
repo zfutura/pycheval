@@ -652,7 +652,7 @@ def _basic_wl_args(
         "contract_id": agreement.contract_id,
         "ship_to": delivery.ship_to,
         "despatch_advice_id": delivery.despatch_advice_id,
-        "sepa_reference": settlement.creditor_reference_id,
+        "seller_sepa_creditor_id": settlement.creditor_reference_id,
         "payment_reference": settlement.payment_reference,
         "payment_means": settlement.payment_means,
         "payment_terms": settlement.payment_terms,
