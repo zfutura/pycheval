@@ -143,8 +143,9 @@ TEXT_SUBJECT_CODE_NAMES = {
 class PaymentMeansCode(StrEnum):
     """Selected payment means codes defined in UNTDID 4461.
 
-    https://service.unece.org/trade/untdid/d98a/uncl/uncl4461.htm
+    https://unece.org/fileadmin/DAM/trade/untdid/d16b/tred/tred4461.htm
     """
+
     NOTDEFINED = "1"
     SPECIES = "10"
     CHECK = "20"
