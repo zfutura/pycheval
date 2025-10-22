@@ -185,12 +185,9 @@ def _add_attachment(
     attachment.pdf_object[NameObject("/UF")] = create_string_object(
         FACTURX_FILENAME
     )
-    attachment.pdf_object[NameObject("/AFRelationship")] = NameObject(
-        f"/{relationship.value}"
-    )
     attachment._embedded_file[NameObject("/Subtype")] = NameObject("/text/xml")
 
-    # Replace file dictionary with an indirect object.
+    # Get the file specification dictionary from the names tree
     catalog = writer._root_object
     names_dict = catalog["/Names"]
     assert isinstance(names_dict, DictionaryObject), (
@@ -205,18 +202,25 @@ def _add_attachment(
         f"/Names is {type(names_array)}"
     )
     file_dict = names_array[-1]
-    if not isinstance(file_dict, IndirectObject):
-        assert isinstance(file_dict, DictionaryObject), (
-            f"file_dict is {type(file_dict)}"
-        )
-        file_ref = writer._add_object(file_dict)
-        names_array[-1] = file_ref
+    if isinstance(file_dict, IndirectObject):
+        file_dict = file_dict.get_object()
+    assert isinstance(file_dict, DictionaryObject), (
+        f"file_dict is {type(file_dict)}"
+    )
 
-        # Add the file reference to the /AF array in the catalog.
-        if NameObject("/AF") not in catalog:
-            catalog[NameObject("/AF")] = ArrayObject()
-        af_array = catalog[NameObject("/AF")]
-        assert isinstance(af_array, ArrayObject), f"/AF is {type(af_array)}"
+    file_dict[NameObject("/AFRelationship")] = NameObject(
+        f"/{relationship.value}"
+    )
+
+    file_ref = writer._add_object(file_dict)
+    names_array[-1] = file_ref
+
+    # Add the file reference to the /AF array in the catalog.
+    if NameObject("/AF") not in catalog:
+        catalog[NameObject("/AF")] = ArrayObject()
+    af_array = catalog[NameObject("/AF")]
+    assert isinstance(af_array, ArrayObject), f"/AF is {type(af_array)}"
+    if file_ref not in af_array:
         af_array.append(file_ref)
 
 
