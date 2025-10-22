@@ -4,12 +4,14 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ## Unreleased
 
+## 0.3.0 – 2025-10-22
+
 ### Changed
 
 - Change `sepa_reference` field in `BasicWLInvoice` to
   `seller_sepa_creditor_id` to better reflect its purpose.
 
-### 0.3.0 – 2025-10-22
+### Fixed
 
 - Fix PDF embedding logic.
 
