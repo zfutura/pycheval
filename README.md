@@ -15,7 +15,7 @@ See the [Factur-X website (French)](https://www.factur-x.org/) or
 [FeRD website (German)](https://www.ferd-net.de/) for more information.
 
 This library supports reading and writing PDF and XML files according to
-Factur-X Version 1.07.3 (aka ZUGFeRD 2.3.3). The following Factur-X profiles
+Factur-X Version 1.08 (aka ZUGFeRD 2.4). The following Factur-X profiles
 are currently supported:
 
 - Minimum
