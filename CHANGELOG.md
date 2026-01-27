@@ -4,6 +4,10 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ## Unreleased
 
+### Added
+
+- Add `QuantityCode`s `WEEK` (`WEE`), `MONTH` (`MON`), and `YEAR` (`ANN`).
+
 ## 0.3.0 – 2025-10-22
 
 ### Changed
