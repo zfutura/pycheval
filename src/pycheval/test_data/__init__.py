@@ -4,9 +4,11 @@ from decimal import Decimal
 from pycheval.model import (
     BasicInvoice,
     BasicWLInvoice,
+    DocumentAllowance,
     EN16931Invoice,
     EN16931LineItem,
     IncludedNote,
+    LineAllowance,
     LineItem,
     MinimumInvoice,
     PaymentTerms,
@@ -268,5 +270,156 @@ Handelsregisternummer: H A 123
       """,
                 TextSubjectCode.REGULATORY_INFORMATION,
             ),
+        ],
+    )
+
+
+def en16931_rechnungskorrektur() -> EN16931Invoice:
+    return EN16931Invoice(
+        invoice_number="RK21012345",
+        type_code=DocumentTypeCode.CORRECTION,
+        invoice_date=date(2018, 9, 16),
+        currency_code="EUR",
+        delivery_date=date(2018, 8, 5),
+        seller=TradeParty(
+            "MUSTERLIEFERANT GMBH",
+            PostalAddress(
+                "DE", None, "99199", "MUSTERHAUSEN", "BAHNHOFSTRASSE 99"
+            ),
+            vat_id="DE123456789",
+            ids=["549910"],
+            global_ids=[("4333741000005", IdentifierSchemeCode.GLN)],
+        ),
+        buyer=TradeParty(
+            "MUSTER-KUNDE GMBH",
+            PostalAddress(
+                "DE",
+                None,
+                "40235",
+                "DUESSELDORF",
+                "KUNDENWEG 88",
+            ),
+            ids=["009420"],
+        ),
+        line_items=[
+            EN16931LineItem(
+                "1",
+                "Zitronensäure 100ml",
+                billed_total=Money("-5.00", "EUR"),
+                gross_unit_price=(Money("1.0000", "EUR"), None),
+                net_price=Money("1.0000", "EUR"),
+                billed_quantity=(Decimal("-5.0000"), QuantityCode.PIECE),
+                tax_rate=Decimal("19.00"),
+                global_id=("4123456000014", IdentifierSchemeCode.GLN),
+                seller_assigned_id="ZS997",
+                description="""Verpackung: Flasche
+VKE/Geb: 1
+        """,
+            ),
+            EN16931LineItem(
+                "2",
+                "Gelierzucker Extra 250g",
+                net_price=Money("1.4500", "EUR"),
+                billed_quantity=(Decimal("-2.0000"), QuantityCode.PIECE),
+                billed_total=Money("-2.90", "EUR"),
+                tax_rate=Decimal("7.00"),
+                global_id=("4123456000021", IdentifierSchemeCode.GLN),
+                seller_assigned_id="GZ250",
+                gross_unit_price=(Money("1.5000", "EUR"), None),
+                gross_allowance_or_charge=LineAllowance(Money("0.05", "EUR")),
+                description="""Verpackung: Karton
+VKE/Geb: 1
+				
+        """,
+            ),
+        ],
+        buyer_order_id="B123456789",
+        despatch_advice_id="L87654321012345",
+        tax=[
+            Tax(
+                calculated_amount=Money("-0.92", "EUR"),
+                basis_amount=Money("-4.85", "EUR"),
+                rate_percent=Decimal("19.00"),
+                category_code=TaxCategoryCode.STANDARD_RATE,
+            ),
+            Tax(
+                Money("-0.20", "EUR"),
+                Money("-2.82", "EUR"),
+                Decimal("7.00"),
+                TaxCategoryCode.STANDARD_RATE,
+            ),
+        ],
+        allowances=[
+            DocumentAllowance(
+                actual_amount=Money("-0.10", "EUR"),
+                reason="Rechnungsrabatt 1 -2,00% Basisbetrag: -5,00, "
+                "MwSt. % 19,0",
+                tax_rate=Decimal("19.00"),
+            ),
+            DocumentAllowance(
+                Money("-0.06", "EUR"),
+                reason="Rechnungsrabatt 1 -2,00% Basisbetrag: -2,90, "
+                "MwSt. %  7,0",
+                tax_rate=Decimal("7.00"),
+            ),
+            DocumentAllowance(
+                Money("-0.05", "EUR"),
+                reason="Rechnungsrabatt 2       Basisbetrag: -5,00, "
+                "MwSt. % 19,0",
+                tax_rate=Decimal("19.00"),
+            ),
+            DocumentAllowance(
+                Money("-0.02", "EUR"),
+                reason="Rechnungsrabatt 2       Basisbetrag: -2,90, "
+                "MwSt. %  7,0",
+                tax_rate=Decimal("7.00"),
+            ),
+        ],
+        line_total_amount=Money("-7.90", "EUR"),
+        charge_total_amount=Money("0.00", "EUR"),
+        allowance_total_amount=Money("-0.23", "EUR"),
+        tax_basis_total_amount=Money("-7.67", "EUR"),
+        tax_total_amounts=[Money("-1.12", "EUR")],
+        grand_total_amount=Money("-8.79", "EUR"),
+        prepaid_amount=Money("0.00", "EUR"),
+        due_payable_amount=Money("-8.79", "EUR"),
+        notes=[
+            IncludedNote(
+                "Es bestehen Rabatt- oder Bonusvereinbarungen.",
+                TextSubjectCode.PRICE_CONDITIONS,
+            ),
+            IncludedNote(
+                """MUSTERLIEFERANT GMBH
+BAHNHOFSTRASSE 99
+99199 MUSTERHAUSEN
+Geschäftsführung:
+Max Mustermann
+USt-IdNr: DE123456789
+Telefon: +49 932 431 0
+www.musterlieferant.de
+HRB Nr. 372876
+Amtsgericht Musterstadt
+GLN 4304171000002
+      """,
+                TextSubjectCode.REGULATORY_INFORMATION,
+            ),
+            IncludedNote(
+                """Bei Rückfragen:
+Telefon: +49 932 431 500
+E-Mail : max.muster@musterlieferant.de
+      """
+            ),
+            IncludedNote("""Ursprungsbeleg-Nr  : R87654321012345
+Reklamationsnummer : REKLA-2018-235
+      """),
+            IncludedNote("""Warenempfänger
+GLN 430417088093
+MUSTER-MARKT
+
+HAUPTSTRASSE 44
+31157 SARSTEDT
+
+Abteilung : 8211
+      """),
         ],
     )

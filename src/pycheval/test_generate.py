@@ -10,6 +10,7 @@ from .test_data import (
     basic_einfach,
     basic_wl_einfach,
     en16931_einfach,
+    en16931_rechnungskorrektur,
     minimum_rechnung,
 )
 
@@ -21,6 +22,7 @@ from .test_data import (
         (basic_wl_einfach, "BASIC-WL_Einfach.xml"),
         (basic_einfach, "BASIC_Einfach.xml"),
         (en16931_einfach, "EN16931_Einfach.xml"),
+        (en16931_rechnungskorrektur, "EN16931_Rechnungskorrektur.xml"),
     ],
 )
 def test_generate(
