@@ -26,7 +26,7 @@ if test $(git status --porcelain | wc -l) -ne 0; then
     exit 1
 fi
 
-VERSION=$(grep "## \\[" CHANGELOG.md | head -1 | cut -d "[" -f 2 | cut -d "]" -f 1)
+VERSION=$(grep -e '## [0-9].*–' CHANGELOG.md | head -1 | cut -d " " -f 2)
 PKG_VERSION=$(grep -e '^version =' pyproject.toml | cut -d '"' -f 2)
 
 if test "$VERSION" == "Unreleased"; then
@@ -35,7 +35,7 @@ if test "$VERSION" == "Unreleased"; then
 fi
 
 if test "$VERSION" != "$PKG_VERSION"; then
-    echo -e "\033[0;31m*** Versions in CHANGELOG.md and package.json don't match, aborting\033[0m"
+    echo -e "\033[0;31m*** Versions in CHANGELOG.md and pyproject.toml don't match, aborting\033[0m"
     exit 1
 fi
 
