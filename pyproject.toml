@@ -1,6 +1,6 @@
 [project]
 name = "PyCheval"
-version = "0.3.2"
+version = "0.3.3.dev"
 description = "Factur-X/ZUGFeRD parsing and generation library for Python"
 authors = [{ name = "Sebastian Rittau", email = "sebastian.rittau@zfutura.de" }]
 readme = "README.md"
