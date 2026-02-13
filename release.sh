@@ -64,7 +64,7 @@ echo
 
 if test "${MODE}" = "run"; then
     echo -e "\033[0;36m*** Create a new GitHub release\033[0m"
-    echo -e "\033[0;36m*** Add '## [UNRELEASED] –' header to CHANGELOG.md\033[0m"
+    echo -e "\033[0;36m*** Add '## Unreleased' header to CHANGELOG.md\033[0m"
     echo -e "\033[0;36m*** Bump version in pyproject.toml and add .dev\033[0m"
 else
     echo -e "\033[0;33m*** Dry run successful, rerun with '-f' to publish the package\033[0m"
