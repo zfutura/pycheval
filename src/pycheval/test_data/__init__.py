@@ -64,7 +64,7 @@ def basic_wl_einfach() -> BasicWLInvoice:
             "Taxi-Gast AG Mitte",
             PostalAddress(
                 "DE",
-                None,
+                "",
                 "13351",
                 "Berlin",
                 "Hans Mustermann",

@@ -118,18 +118,18 @@ def _email_element(
 
 def _address_element(parent: ET.Element, address: PostalAddress) -> None:
     root = ET.SubElement(parent, "ram:PostalTradeAddress")
-    if address.post_code is not None:
+    if address.post_code:
         ET.SubElement(root, "ram:PostcodeCode").text = address.post_code
-    if address.line_one is not None:
+    if address.line_one:
         ET.SubElement(root, "ram:LineOne").text = address.line_one
-    if address.line_two is not None:
+    if address.line_two:
         ET.SubElement(root, "ram:LineTwo").text = address.line_two
-    if address.line_three is not None:
+    if address.line_three:
         ET.SubElement(root, "ram:LineThree").text = address.line_three
-    if address.city is not None:
+    if address.city:
         ET.SubElement(root, "ram:CityName").text = address.city
     ET.SubElement(root, "ram:CountryID").text = address.country_code
-    if address.country_subdivision is not None:
+    if address.country_subdivision:
         ET.SubElement(
             root, "ram:CountrySubDivisionName"
         ).text = address.country_subdivision

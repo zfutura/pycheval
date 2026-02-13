@@ -321,6 +321,19 @@ class PostalAddress:
     line_three: str | None = None
 
     def __post_init__(self) -> None:
+        if not self.country_subdivision:
+            self.country_subdivision = None
+        if not self.post_code:
+            self.post_code = None
+        if not self.city:
+            self.city = None
+        if not self.line_one:
+            self.line_one = None
+        if not self.line_two:
+            self.line_two = None
+        if not self.line_three:
+            self.line_three = None
+
         if not validate_iso_3166_1_alpha_2(self.country_code):
             raise ModelError("Invalid ISO 3166-1 alpha-2 country code.")
 

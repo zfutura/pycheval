@@ -8,6 +8,10 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 - Add `TextSubjectCode` `PRICE_CONDITIONS` (`AAK`).
 
+### Fixed
+
+- Don't generate empty `ram:PostalTradeAddress` fields.
+
 ## 0.3.1 – 2026-02-13
 
 ### Added
