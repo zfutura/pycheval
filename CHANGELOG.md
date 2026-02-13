@@ -4,6 +4,10 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ## Unreleased
 
+### Added
+
+- Add `TextSubjectCode` `PRICE_CONDITIONS` (`AAK`).
+
 ## 0.3.1 – 2026-02-13
 
 ### Added
