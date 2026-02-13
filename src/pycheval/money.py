@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import locale
 import re
-from decimal import Decimal
+from decimal import ROUND_HALF_UP, Decimal
 from typing import Literal, cast
 
 
@@ -79,11 +79,15 @@ class Money:
             return formatted_amount + (separated and " " or "") + currency
 
     def __mul__(self, other: Decimal) -> Money:
-        value = (self.amount * other).quantize(Decimal("1.00"))
+        value = (self.amount * other).quantize(
+            Decimal("1.00"), rounding=ROUND_HALF_UP
+        )
         return Money(value, self.currency)
 
     def __truediv__(self, other: Decimal) -> Money:
-        value = (self.amount / other).quantize(Decimal("1.00"))
+        value = (self.amount / other).quantize(
+            Decimal("1.00"), rounding=ROUND_HALF_UP
+        )
         return Money(value, self.currency)
 
 
