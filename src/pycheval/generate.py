@@ -9,7 +9,7 @@ import datetime
 import xml.etree.ElementTree as ET
 from base64 import b64encode
 
-from .const import NS_CII, NS_RAM, NS_UDT
+from .const import NS_CII, NS_QDT, NS_RAM, NS_UDT
 from .model import (
     BasicInvoice,
     BasicWLInvoice,
@@ -57,10 +57,15 @@ def xml_date(date: datetime.date) -> str:
 
 
 def _date_element(
-    parent: ET.Element, name: str, date: datetime.date
+    parent: ET.Element,
+    name: str,
+    date: datetime.date,
+    *,
+    qualified: bool = False,
 ) -> ET.Element:
     el = ET.SubElement(parent, name)
-    date_el = ET.SubElement(el, "udt:DateTimeString", format="102")
+    prefix = "qdt" if qualified else "udt"
+    date_el = ET.SubElement(el, f"{prefix}:DateTimeString", format="102")
     date_el.text = "{:04d}{:02d}{:02d}".format(date.year, date.month, date.day)
     return el
 
@@ -224,14 +229,14 @@ def generate_et(invoice: MinimumInvoice) -> ET.Element:
     >>> root = generate_et(invoice)
     """
 
-    root = ET.Element(
-        "rsm:CrossIndustryInvoice",
-        {
-            "xmlns:rsm": NS_CII,
-            "xmlns:ram": NS_RAM,
-            "xmlns:udt": NS_UDT,
-        },
-    )
+    ns = {
+        "xmlns:rsm": NS_CII,
+        "xmlns:ram": NS_RAM,
+        "xmlns:udt": NS_UDT,
+    }
+    if invoice.has_preceding_invoice_with_date:
+        ns["xmlns:qdt"] = NS_QDT
+    root = ET.Element("rsm:CrossIndustryInvoice", ns)
 
     _generate_doc_context(root, invoice)
     _generate_doc(root, invoice)
@@ -485,7 +490,9 @@ def _generate_preceding_invoice(
     doc_el = ET.SubElement(parent, "ram:InvoiceReferencedDocument")
     ET.SubElement(doc_el, "ram:IssuerAssignedID").text = id
     if date is not None:
-        _date_element(doc_el, "ram:FormattedIssueDateTime", date)
+        _date_element(
+            doc_el, "ram:FormattedIssueDateTime", date, qualified=True
+        )
 
 
 def _generate_referenced_document(parent: ET.Element, doc: DocRef) -> None:

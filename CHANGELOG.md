@@ -11,6 +11,8 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 ### Fixed
 
 - Don't generate empty `ram:PostalTradeAddress` fields.
+- Use `qdt:DateTimeString` instead of `udt:DateTimeString` for the issue date
+  of preceding invoices.
 
 ## 0.3.1 – 2026-02-13
 

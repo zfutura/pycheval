@@ -1,3 +1,4 @@
+import datetime
 from datetime import date
 from decimal import Decimal
 
@@ -102,6 +103,46 @@ Ihre Kundennummer: GE2020211
      """),
         ],
     )
+
+
+def basic_wl() -> BasicWLInvoice:
+    return BasicWLInvoice(
+        invoice_number="12345",
+        type_code=DocumentTypeCode.INVOICE,
+        invoice_date=date(2026, 1, 1),
+        currency_code="EUR",
+        seller=TradeParty(
+            "Seller",
+            PostalAddress("DE"),
+            vat_id="DE123456789",
+        ),
+        buyer=TradeParty(
+            "Buyer",
+            PostalAddress("DE"),
+        ),
+        line_total_amount=Money("100.00", "EUR"),
+        tax_basis_total_amount=Money("100.00", "EUR"),
+        tax=[
+            Tax(
+                Money("7.00", "EUR"),
+                Money("100.00", "EUR"),
+                Decimal(7),
+                TaxCategoryCode.STANDARD_RATE,
+            )
+        ],
+        tax_total_amounts=[Money("7.00", "EUR")],
+        grand_total_amount=Money("107.00", "EUR"),
+        due_payable_amount=Money("107.00", "EUR"),
+        payment_terms=PaymentTerms(due_date=date(2026, 2, 1)),
+    )
+
+
+def basic_wl_preceding_invoice() -> BasicWLInvoice:
+    invoice = basic_wl()
+    invoice.preceding_invoices = [
+        ("444433", datetime.date(2026, 3, 12)),
+    ]
+    return invoice
 
 
 def basic_einfach() -> BasicInvoice:

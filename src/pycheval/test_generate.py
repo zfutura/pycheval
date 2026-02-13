@@ -9,6 +9,7 @@ from .model import MinimumInvoice
 from .test_data import (
     basic_einfach,
     basic_wl_einfach,
+    basic_wl_preceding_invoice,
     en16931_einfach,
     en16931_rechnungskorrektur,
     minimum_rechnung,
@@ -20,6 +21,7 @@ from .test_data import (
     [
         (minimum_rechnung, "MINIMUM_Rechnung.xml"),
         (basic_wl_einfach, "BASIC-WL_Einfach.xml"),
+        (basic_wl_preceding_invoice, "BASIC-WL_Preceding_Invoice.xml"),
         (basic_einfach, "BASIC_Einfach.xml"),
         (en16931_einfach, "EN16931_Einfach.xml"),
         (en16931_rechnungskorrektur, "EN16931_Rechnungskorrektur.xml"),

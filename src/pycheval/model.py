@@ -398,6 +398,15 @@ class MinimumInvoice:
                     "MINIMUM profile."
                 )
 
+    @property
+    def has_preceding_invoice_with_date(self) -> bool:
+        """Whether the invoice has a preceding invoice with a date.
+
+        This is used to determine whether we need to add the QualifiedDataType
+        namespace for the date in the XML.
+        """
+        return False
+
 
 @dataclass
 class BasicWLInvoice(MinimumInvoice):
@@ -461,6 +470,11 @@ class BasicWLInvoice(MinimumInvoice):
                 "Multiple tax total amounts are not allowed in the "
                 f"{self.PROFILE_NAME} profile."
             )
+
+    @property
+    def has_preceding_invoice_with_date(self) -> bool:
+        """Whether the invoice has a preceding invoice with a date."""
+        return any(date is not None for _, date in self.preceding_invoices)
 
 
 @dataclass
