@@ -162,28 +162,28 @@ def _generate_trade_party(
         ET.SubElement(el, "ram:ID").text = id
     for global_id in party.global_ids:
         _scheme_id_element(el, "ram:GlobalID", global_id)
-    if party.name is not None:
+    if party.name:
         ET.SubElement(el, "ram:Name").text = party.name
-    if party.description is not None:
+    if party.description:
         ET.SubElement(el, "ram:Description").text = party.description
-    if party.legal_id is not None or party.trading_business_name is not None:
+    if party.legal_id or party.trading_business_name:
         legal_el = ET.SubElement(el, "ram:SpecifiedLegalOrganization")
-        if party.legal_id is not None:
+        if party.legal_id:
             _scheme_id_element(legal_el, "ram:ID", party.legal_id)
-        if party.trading_business_name is not None:
+        if party.trading_business_name:
             ET.SubElement(
                 legal_el, "ram:TradingBusinessName"
             ).text = party.trading_business_name
-    if party.contact is not None:
+    if party.contact:
         _generate_trade_contact(el, party.contact)
-    if party.address is not None:
+    if party.address:
         _address_element(el, party.address)
-    if party.email is not None:
+    if party.email:
         _email_element(el, "ram:URIUniversalCommunication", party.email)
-    if party.tax_number is not None:
+    if party.tax_number:
         tax = ET.SubElement(el, "ram:SpecifiedTaxRegistration")
         ET.SubElement(tax, "ram:ID", schemeID="FC").text = party.tax_number
-    if party.vat_id is not None:
+    if party.vat_id:
         tax = ET.SubElement(el, "ram:SpecifiedTaxRegistration")
         ET.SubElement(tax, "ram:ID", schemeID="VA").text = party.vat_id
 
