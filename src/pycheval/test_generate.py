@@ -37,6 +37,17 @@ def test_generate(
     assert our_xml == their_xml
 
 
+@pytest.mark.parametrize(
+    "email", ["mailto:test@example.com", "test@example.com"]
+)
+def test_email_with_mailto(email: str) -> None:
+    invoice = basic_einfach(seller_email=email)
+    root = generate_et(invoice)
+    els = list(root.iter("ram:URIID"))
+    assert len(els) == 1
+    assert els[0].text == "mailto:test@example.com"
+
+
 def _generate_xml(invoice: MinimumInvoice) -> str:
     tree = generate_et(invoice)
     tree.attrib = dict(sorted(tree.attrib.items()))

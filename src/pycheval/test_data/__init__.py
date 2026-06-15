@@ -145,7 +145,7 @@ def basic_wl_preceding_invoice() -> BasicWLInvoice:
     return invoice
 
 
-def basic_einfach() -> BasicInvoice:
+def basic_einfach(seller_email: str | None = None) -> BasicInvoice:
     return BasicInvoice(
         invoice_number="471102",
         type_code=DocumentTypeCode.INVOICE,
@@ -157,6 +157,7 @@ def basic_einfach() -> BasicInvoice:
             PostalAddress(
                 "DE", None, "80333", "München", "Lieferantenstraße 20"
             ),
+            email=seller_email,
             tax_number="201/113/40209",
             vat_id="DE123456789",
         ),

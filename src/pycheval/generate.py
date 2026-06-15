@@ -115,6 +115,7 @@ def _quantity_element(
 def _email_element(
     parent: ET.Element, name: str, email_address: str
 ) -> ET.Element:
+    email_address = email_address.removeprefix("mailto:")
     el = ET.SubElement(parent, name)
     sub = ET.SubElement(el, "ram:URIID", schemeID="EM")
     sub.text = f"mailto:{email_address}"
