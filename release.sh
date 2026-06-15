@@ -44,8 +44,8 @@ echo
 
 rm -rf dist
 
-poetry run poe i18n-compile
-poetry build
+uv run poe i18n-compile
+uv build
 
 echo -e "\033[0;34m*** Publishing version ${VERSION}\033[0m"
 echo
@@ -53,9 +53,9 @@ echo
 if test "${MODE}" = "run"; then
     git tag "v${VERSION}" -m "Release ${VERSION}"
     git push origin "v${VERSION}"
-    poetry publish
+    uv publish
 else
-    poetry publish --dry-run
+    uv publish --dry-run
 fi
 
 echo

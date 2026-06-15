@@ -17,19 +17,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
-      - name: Install poetry
-        run: pipx install poetry
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v6
+      - uses: astral-sh/setup-uv@v7
+        name: Install uv
         with:
           python-version: ${{ matrix.python-version }}
-          allow-prereleases: true
-          cache: poetry
       - name: Install Python packages
-        run: poetry install
+        run: uv sync --locked
       - name: Lint with ruff
-        run: poetry run poe lint
+        run: uv run poe lint
       - name: Type checking with mypy
-        run: poetry run poe typecheck
+        run: uv run poe typecheck
       - name: Test with pytest
-        run: poetry run poe test
+        run: uv run poe test

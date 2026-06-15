@@ -5,6 +5,7 @@ description = "Factur-X/ZUGFeRD parsing and generation library for Python"
 authors = [{ name = "Sebastian Rittau", email = "sebastian.rittau@zfutura.de" }]
 readme = "README.md"
 license = "Apache-2.0"
+license-files = ["LICENSE"]
 keywords = ["factur-x", "zugferd", "invoice", "billing"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -29,9 +30,9 @@ dev = [
     "ruff ~= 0.14.0",
 ]
 
-[tool.poetry]
-include = [{ path = "src/pycheval/locale/**/*.mo", format = ["sdist", "wheel"] }]
-exclude = ["src/pycheval/test_*"]
+[tool.uv.build-backend]
+source-include = ["src/pycheval/locale/**/*.mo"]
+source-exclude = ["src/pycheval/test_*"]
 
 [tool.poe.tasks.lint]
 cmd = "ruff check src"
@@ -75,5 +76,5 @@ combine-as-imports = true
 strict = true
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.11.21,<0.12"]
+build-backend = "uv_build"
