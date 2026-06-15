@@ -30,6 +30,9 @@ dev = [
     "ruff ~= 0.14.0",
 ]
 
+[tool.uv]
+exclude-newer = "5 days"
+
 [tool.uv.build-backend]
 source-include = ["src/pycheval/locale/**/*.mo"]
 source-exclude = ["src/pycheval/test_*"]
@@ -76,5 +79,5 @@ combine-as-imports = true
 strict = true
 
 [build-system]
-requires = ["uv_build>=0.11.21,<0.12"]
+requires = ["uv_build>=0.11.19,<0.12"]
 build-backend = "uv_build"
