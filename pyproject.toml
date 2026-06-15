@@ -25,9 +25,9 @@ GitHub = "https://github.com/zfutura/pycheval"
 dev = [
     "babel >= 2.17.0, < 3",
     "mypy ~= 2.1.0",
-    "poethepoet ~= 0.37.0",
+    "poethepoet >= 0.46.0",
     "pytest >= 9.0.3, < 10",
-    "ruff ~= 0.14.0",
+    "ruff ~= 0.15.16",
 ]
 
 [tool.uv]
