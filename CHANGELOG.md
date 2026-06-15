@@ -8,6 +8,10 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 - Support Python 3.15.
 
+### Changed
+
+- Strip `mailto:` prefix from email addresses when parsing XML.
+
 ### Fixed
 
 - Remove extra `mailto:` prefix from email addresses when generating XML.

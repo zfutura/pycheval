@@ -1679,7 +1679,7 @@ def _parse_email(parent: ET.Element) -> str | None:
         raise InvalidXMLError("Invalid schemeID for email")
     if id_el.text is None:
         raise InvalidXMLError("URIID element has no text")
-    return id_el.text
+    return id_el.text.removeprefix("mailto:")
 
 
 def _parse_tax_simple(

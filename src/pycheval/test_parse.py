@@ -1,7 +1,11 @@
 from collections.abc import Callable
 from pathlib import Path
+from typing import Final
+from xml.etree import ElementTree as ET
 
 import pytest
+
+from pycheval.const import NS_RAM
 
 from .exc import NotFacturXError, UnsupportedProfileError, XMLParseError
 from .model import MinimumInvoice
@@ -12,6 +16,8 @@ from .test_data import (
     en16931_einfach,
     minimum_rechnung,
 )
+
+TEST_DATA_PATH: Final = Path(__file__).parent / "test_data"
 
 
 def test_parse_invalid_xml() -> None:
@@ -77,7 +83,20 @@ def test_parse_unknown_profile() -> None:
 def test_parse_invoice(
     filename: str, expected: Callable[[], MinimumInvoice]
 ) -> None:
-    path = Path(__file__).parent / "test_data" / filename
-    parsed_invoice = parse_xml(path)
+    parsed_invoice = parse_xml(TEST_DATA_PATH / filename)
     expected_invoice = expected()
     assert parsed_invoice == expected_invoice
+
+
+@pytest.mark.parametrize(
+    "email", ["mailto:test@example.com", "test@example.com"]
+)
+def test_normalize_email(email: str) -> None:
+    root = ET.parse(TEST_DATA_PATH / "BASIC-WL_Einfach.xml").getroot()
+    buyer_el = root.find(".//ram:BuyerTradeParty", namespaces={"ram": NS_RAM})
+    assert buyer_el is not None
+    comm_el = ET.SubElement(buyer_el, "ram:URIUniversalCommunication")
+    ET.SubElement(comm_el, "ram:URIID", schemeID="EM").text = email
+
+    invoice = parse_xml(ET.tostring(root, encoding="unicode"))
+    assert invoice.buyer.email == "test@example.com"
