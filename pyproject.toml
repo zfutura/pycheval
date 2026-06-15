@@ -27,7 +27,7 @@ dev = [
     "mypy ~= 1.18.2",
     "poethepoet ~= 0.37.0",
     "pytest >= 9.0.3, < 10",
-    "ruff ~= 0.14.0",
+    "ruff >= 0.14,< 0.16",
 ]
 
 [tool.uv]
