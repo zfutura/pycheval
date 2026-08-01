@@ -1,5 +1,8 @@
 name: Test and lint
 
+permissions:
+  contents: read
+
 on:
   push:
     branches-ignore:
