@@ -576,6 +576,9 @@ msgstr "Kreditkarte"
 msgid "Direct Debit"
 msgstr "Lastschrift"
 
+msgid "Credit Card Payment"
+msgstr "Kreditkartenzahlung"
+
 #: src/pycheval/type_codes.py:170
 msgid "Standing Agreement"
 msgstr "Dauerauftrag"
@@ -587,6 +590,9 @@ msgstr "SEPA-Überweisung"
 #: src/pycheval/type_codes.py:172
 msgid "SEPA Direct Debit"
 msgstr "SEPA-Lastschrift"
+
+msgid "Online Payment Service"
+msgstr "Online-Zahlungsdienst"
 
 #: src/pycheval/type_codes.py:173
 msgid "Report"

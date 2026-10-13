@@ -7,6 +7,11 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 ### Added
 
 - Support Python 3.15.
+- Add `PaymentMeansCode` members `CREDIT_CARD_PAYMENT` (`54`) and
+  `ONLINE_PAYMENT_SERVICE` (`68`). Invoices using these codes could be
+  generated, but not parsed.
+- Add `PaymentMeansCode.BANK_CARD` as an alias for code `48`, which
+  UNTDID 4461 calls "Bank card".
 
 ### Changed
 
