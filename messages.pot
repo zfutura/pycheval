@@ -575,6 +575,9 @@ msgstr ""
 msgid "Direct Debit"
 msgstr ""
 
+msgid "Credit Card Payment"
+msgstr ""
+
 #: src/pycheval/type_codes.py:170
 msgid "Standing Agreement"
 msgstr ""
@@ -585,6 +588,9 @@ msgstr ""
 
 #: src/pycheval/type_codes.py:172
 msgid "SEPA Direct Debit"
+msgstr ""
+
+msgid "Online Payment Service"
 msgstr ""
 
 #: src/pycheval/type_codes.py:173

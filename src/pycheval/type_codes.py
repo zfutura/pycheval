@@ -153,10 +153,13 @@ class PaymentMeansCode(StrEnum):
     TRANSFER = "30"
     BANK_PAYMENT = "42"
     CREDIT_CARD = "48"
+    BANK_CARD = "48"  # UNTDID 4461 name of code 48
     DIRECT_DEBIT = "49"
+    CREDIT_CARD_PAYMENT = "54"
     STANDING_AGREEMENT = "57"
     SEPA_CREDIT_TRANSFER = "58"
     SEPA_DIRECT_DEBIT = "59"
+    ONLINE_PAYMENT_SERVICE = "68"
     REPORT = "97"
     INTERIM_AGREEMENT = "ZZZ"
 
@@ -169,9 +172,11 @@ PAYMENT_MEANS_NAMES = {
     PaymentMeansCode.BANK_PAYMENT: N_("Bank Payment"),
     PaymentMeansCode.CREDIT_CARD: N_("Credit Card"),
     PaymentMeansCode.DIRECT_DEBIT: N_("Direct Debit"),
+    PaymentMeansCode.CREDIT_CARD_PAYMENT: N_("Credit Card Payment"),
     PaymentMeansCode.STANDING_AGREEMENT: N_("Standing Agreement"),
     PaymentMeansCode.SEPA_CREDIT_TRANSFER: N_("SEPA Credit Transfer"),
     PaymentMeansCode.SEPA_DIRECT_DEBIT: N_("SEPA Direct Debit"),
+    PaymentMeansCode.ONLINE_PAYMENT_SERVICE: N_("Online Payment Service"),
     PaymentMeansCode.REPORT: N_("Report"),
     PaymentMeansCode.INTERIM_AGREEMENT: N_("Interim Agreement"),
 }

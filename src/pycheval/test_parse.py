@@ -1,4 +1,5 @@
 from collections.abc import Callable
+from dataclasses import replace
 from pathlib import Path
 from typing import Final
 from xml.etree import ElementTree as ET
@@ -8,7 +9,8 @@ import pytest
 from pycheval.const import NS_RAM
 
 from .exc import NotFacturXError, UnsupportedProfileError, XMLParseError
-from .model import MinimumInvoice
+from .generate import generate_xml
+from .model import EN16931Invoice, MinimumInvoice, PaymentMeans
 from .parse import parse_xml
 from .test_data import (
     basic_einfach,
@@ -16,6 +18,7 @@ from .test_data import (
     en16931_einfach,
     minimum_rechnung,
 )
+from .type_codes import PaymentMeansCode
 
 TEST_DATA_PATH: Final = Path(__file__).parent / "test_data"
 
@@ -100,3 +103,19 @@ def test_normalize_email(email: str) -> None:
 
     invoice = parse_xml(ET.tostring(root, encoding="unicode"))
     assert invoice.buyer.email == "test@example.com"
+
+
+@pytest.mark.parametrize(
+    "type_code",
+    [
+        PaymentMeansCode.CREDIT_CARD_PAYMENT,
+        PaymentMeansCode.ONLINE_PAYMENT_SERVICE,
+    ],
+)
+def test_parse_payment_means_code(type_code: PaymentMeansCode) -> None:
+    invoice = replace(
+        en16931_einfach(), payment_means=[PaymentMeans(type_code)]
+    )
+    parsed_invoice = parse_xml(generate_xml(invoice))
+    assert isinstance(parsed_invoice, EN16931Invoice)
+    assert parsed_invoice.payment_means == [PaymentMeans(type_code)]
