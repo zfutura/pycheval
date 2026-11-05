@@ -19,6 +19,11 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ### Fixed
 
+- `embed_invoice_in_pdf()` and `embed_facturx_file_in_pdf()` produced
+  invalid XMP metadata when the input PDF already declared PDF/A extension
+  schemas, as PDF/A-3 files written by Typst do. The Factur-X schema is now
+  added to the existing schema list instead of a second
+  `pdfaExtension:schemas` property.
 - Remove extra `mailto:` prefix from email addresses when generating XML.
   Reported by Hylke van Dijk.
 

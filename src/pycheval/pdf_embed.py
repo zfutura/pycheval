@@ -4,7 +4,7 @@ import sys
 from io import BytesIO
 from pathlib import Path
 from typing import TYPE_CHECKING, Final
-from xml.dom.minidom import parseString
+from xml.dom.minidom import Document, Element, parseString
 
 from pypdf import PdfWriter
 from pypdf.generic import (
@@ -27,6 +27,9 @@ if TYPE_CHECKING:
 
 RDF_NS: Final = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 FACTURX_NS: Final = "urn:factur-x:pdfa:CrossIndustryDocument:invoice:1p0#"
+PDFA_EXTENSION_NS: Final = "http://www.aiim.org/pdfa/ns/extension/"
+PDFA_SCHEMA_NS: Final = "http://www.aiim.org/pdfa/ns/schema#"
+PDFA_PROPERTY_NS: Final = "http://www.aiim.org/pdfa/ns/property#"
 
 FX_EXTENSION_SCHEMA: Final = """
     <rdf:Description xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:pdfaExtension="http://www.aiim.org/pdfa/ns/extension/" xmlns:pdfaSchema="http://www.aiim.org/pdfa/ns/schema#" xmlns:pdfaProperty="http://www.aiim.org/pdfa/ns/property#" rdf:about="">
@@ -151,13 +154,9 @@ def _set_metadata(writer: PdfWriter, profile: Profile) -> None:
     meta_o = meta_o.get_object()
     meta = XmpInformation(meta_o)
 
-    schema = parseString(FX_EXTENSION_SCHEMA)
-    assert schema.documentElement is not None
-    del schema.documentElement.attributes["xmlns:rdf"]
-
     doc = meta.rdf_root.ownerDocument
     assert doc is not None
-    meta.rdf_root.appendChild(schema.documentElement)
+    _add_extension_schema(doc, meta.rdf_root)
     root = doc.createElementNS(RDF_NS, "rdf:Description")
     root.setAttribute("rdf:about", "")
     meta.rdf_root.appendChild(root)
@@ -173,6 +172,40 @@ def _set_metadata(writer: PdfWriter, profile: Profile) -> None:
         el.appendChild(doc.createTextNode(content))
         root.appendChild(el)
     meta_o.set_data(doc.toxml().encode("utf-8"))
+
+
+def _add_extension_schema(doc: Document, rdf_root: Element) -> None:
+    # XMP allows each property only once per resource, so a second
+    # pdfaExtension:schemas makes the packet unparsable (veraPDF:
+    # "Duplicate property or field node 'pdfaExtension:schemas'").
+    # Add the Factur-X schema to an existing schema bag instead.
+    schema = parseString(FX_EXTENSION_SCHEMA)
+    assert schema.documentElement is not None
+    bag = _find_extension_schema_bag(doc)
+    if bag is None:
+        del schema.documentElement.attributes["xmlns:rdf"]
+        rdf_root.appendChild(schema.documentElement)
+        return
+    for uri in bag.getElementsByTagNameNS(PDFA_SCHEMA_NS, "namespaceURI"):
+        text = uri.firstChild
+        if text is not None and text.nodeValue == FACTURX_NS:
+            return  # schema already declared
+    li = schema.getElementsByTagNameNS(RDF_NS, "li")[0]
+    li.setAttribute("xmlns:pdfaSchema", PDFA_SCHEMA_NS)
+    li.setAttribute("xmlns:pdfaProperty", PDFA_PROPERTY_NS)
+    bag.appendChild(doc.importNode(li, True))
+
+
+def _find_extension_schema_bag(doc: Document) -> Element | None:
+    for schemas in doc.getElementsByTagNameNS(PDFA_EXTENSION_NS, "schemas"):
+        for node in schemas.childNodes:
+            if (
+                isinstance(node, Element)
+                and node.namespaceURI == RDF_NS
+                and node.localName == "Bag"
+            ):
+                return node
+    return None
 
 
 def _add_attachment(
