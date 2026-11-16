@@ -6,12 +6,15 @@ import pytest
 from .exc import ModelError
 from .model import (
     BasicWLInvoice,
+    LineAllowance,
+    LineItem,
     MinimumInvoice,
     PostalAddress,
     Tax,
     TradeParty,
 )
 from .money import Money
+from .quantities import QuantityCode
 from .type_codes import DocumentTypeCode
 
 
@@ -33,6 +36,18 @@ class TestValidateBasicWLInvoices:
             seller=_seller(vat_id=None),
             seller_tax_representative=_seller_tax_representative(),
         )
+
+
+class TestLineItemGrossPrice:
+    def test_allowance_requires_gross_price(self) -> None:
+        _line_item(
+            gross_unit_price=(Money("10.00", "EUR"), None),
+            gross_allowance_or_charge=LineAllowance(Money("0.10", "EUR")),
+        )
+        with pytest.raises(ModelError):
+            _line_item(
+                gross_allowance_or_charge=LineAllowance(Money("0.10", "EUR"))
+            )
 
 
 def _minimum_invoice(*, seller: TradeParty | None = None) -> MinimumInvoice:
@@ -99,4 +114,21 @@ def _tax() -> Tax:
         calculated_amount=Money("200.00", "EUR"),
         basis_amount=Money("1000.00", "EUR"),
         rate_percent=Decimal("20.00"),
+    )
+
+
+def _line_item(
+    *,
+    gross_unit_price: tuple[Money, None] | None = None,
+    gross_allowance_or_charge: LineAllowance | None = None,
+) -> LineItem:
+    return LineItem(
+        "1",
+        "Test Item",
+        Money("9.90", "EUR"),
+        (Decimal(1), QuantityCode.PIECE),
+        Money("9.90", "EUR"),
+        Decimal(19),
+        gross_unit_price=gross_unit_price,
+        gross_allowance_or_charge=gross_allowance_or_charge,
     )

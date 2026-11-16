@@ -540,8 +540,20 @@ class LineItem:
 
     _: KW_ONLY
     basis_quantity: OptionalQuantity | None = None
+    # (Unit price, optional basis quantity)
+    gross_unit_price: tuple[Money, OptionalQuantity | None] | None = None
+    gross_allowance_or_charge: LineAllowance | LineCharge | None = None
     allowances: Sequence[LineAllowance] = field(default_factory=list)
     charges: Sequence[LineCharge] = field(default_factory=list)
+
+    def __post_init__(self) -> None:
+        if (
+            self.gross_allowance_or_charge is not None
+            and self.gross_unit_price is None
+        ):
+            raise ModelError(
+                "Price allowance/charge requires a gross unit price."
+            )
 
     def validate(self, profile: type[BasicInvoice]) -> None:
         """Validate the requirements for the given profile."""
@@ -558,9 +570,6 @@ class EN16931LineItem(LineItem):
     _: KW_ONLY
     description: str | None = None
     note: IncludedNote | None = None
-    # (Unit price, optional basis quantity)
-    gross_unit_price: tuple[Money, OptionalQuantity | None] | None = None
-    gross_allowance_or_charge: LineAllowance | LineCharge | None = None
     seller_assigned_id: str | None = None
     buyer_assigned_id: str | None = None
     product_characteristics: Sequence[ProductCharacteristic] = field(
@@ -576,17 +585,10 @@ class EN16931LineItem(LineItem):
     trade_account_id: str | None = None
 
     def __post_init__(self) -> None:
+        super().__post_init__()
         if self.note is not None and self.note.subject_code is not None:
             raise ModelError(
                 "Line item note subject codes are not allowed in the "
-                "EN 16931/COMFORT profile."
-            )
-        if (
-            self.gross_allowance_or_charge is not None
-            and self.gross_unit_price is None
-        ):
-            raise ModelError(
-                "Allowance/charge requires a gross unit price in the "
                 "EN 16931/COMFORT profile."
             )
         if self.origin_country is not None:

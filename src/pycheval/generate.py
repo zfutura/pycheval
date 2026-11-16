@@ -404,32 +404,30 @@ def _generate_line_trade_agreement(
             ET.SubElement(
                 doc_el, "ram:LineID"
             ).text = line_item.buyer_order_line_id
-        if line_item.gross_unit_price is not None:
-            price, quantity = line_item.gross_unit_price
-            price_el = ET.SubElement(
-                agreement, "ram:GrossPriceProductTradePrice"
+    if line_item.gross_unit_price is not None:
+        price, quantity = line_item.gross_unit_price
+        price_el = ET.SubElement(agreement, "ram:GrossPriceProductTradePrice")
+        _currency_element(
+            price_el, "ram:ChargeAmount", price, invoice.currency_code
+        )
+        if quantity is not None:
+            _quantity_element(price_el, "ram:BasisQuantity", quantity)
+        if isinstance(line_item.gross_allowance_or_charge, LineAllowance):
+            _generate_allowance_or_charge(
+                price_el,
+                "ram:AppliedTradeAllowanceCharge",
+                invoice,
+                line_item.gross_allowance_or_charge,
+                False,
             )
-            _currency_element(
-                price_el, "ram:ChargeAmount", price, invoice.currency_code
+        elif isinstance(line_item.gross_allowance_or_charge, LineCharge):
+            _generate_allowance_or_charge(
+                price_el,
+                "ram:AppliedTradeAllowanceCharge",
+                invoice,
+                line_item.gross_allowance_or_charge,
+                True,
             )
-            if quantity is not None:
-                _quantity_element(price_el, "ram:BasisQuantity", quantity)
-            if isinstance(line_item.gross_allowance_or_charge, LineAllowance):
-                _generate_allowance_or_charge(
-                    price_el,
-                    "ram:AppliedTradeAllowanceCharge",
-                    invoice,
-                    line_item.gross_allowance_or_charge,
-                    False,
-                )
-            elif isinstance(line_item.gross_allowance_or_charge, LineCharge):
-                _generate_allowance_or_charge(
-                    price_el,
-                    "ram:AppliedTradeAllowanceCharge",
-                    invoice,
-                    line_item.gross_allowance_or_charge,
-                    True,
-                )
     price_el = ET.SubElement(agreement, "ram:NetPriceProductTradePrice")
     _currency_element(
         price_el,

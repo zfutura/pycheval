@@ -5,10 +5,12 @@ from pathlib import Path
 
 import pytest
 
-from .generate import generate_et
+from .const import NS_RAM, NS_UDT
+from .generate import generate_et, generate_xml
 from .model import MinimumInvoice
 from .test_data import (
     basic_einfach,
+    basic_gross_price,
     basic_wl_einfach,
     basic_wl_preceding_invoice,
     en16931_billing_period,
@@ -66,6 +68,21 @@ def test_tax_point_date_is_date_string() -> None:
         assert children[0].tag == "udt:DateString"
         assert children[0].attrib == {"format": "102"}
         assert children[0].text == "20240517"
+
+
+def test_basic_gross_price() -> None:
+    root = ET.fromstring(generate_xml(basic_gross_price()))
+    ns = {"ram": NS_RAM, "udt": NS_UDT}
+    prices = root.findall(".//ram:GrossPriceProductTradePrice", ns)
+    assert len(prices) == 1
+    assert prices[0].findtext("ram:ChargeAmount", namespaces=ns) == "10.00"
+    allowance_el = prices[0].find("ram:AppliedTradeAllowanceCharge", ns)
+    assert allowance_el is not None
+    indicator = allowance_el.findtext(
+        "ram:ChargeIndicator/udt:Indicator", namespaces=ns
+    )
+    assert indicator == "false"
+    assert allowance_el.findtext("ram:ActualAmount", namespaces=ns) == "0.10"
 
 
 def _generate_xml(invoice: MinimumInvoice) -> str:

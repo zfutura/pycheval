@@ -12,6 +12,10 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
   generated, but not parsed.
 - Add `PaymentMeansCode.BANK_CARD` as an alias for code `48`, which
   UNTDID 4461 calls "Bank card".
+- Support gross prices and price allowances in BASIC profile line items.
+  The `gross_unit_price` and `gross_allowance_or_charge` fields moved from
+  `EN16931LineItem` to `LineItem`. Previously, parsing BASIC invoices with
+  a `GrossPriceProductTradePrice` element failed.
 
 ### Changed
 

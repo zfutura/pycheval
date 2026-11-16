@@ -1079,12 +1079,6 @@ def _parse_line_item(el: ET.Element, default_currency: str) -> LineItem:
             "BuyerOrderReferencedDocument element is not supported in BASIC "
             "profile line items",
         )
-    if agreement.gross_unit_price is not None:
-        raise InvalidProfileError(
-            "BASIC",
-            "GrossPriceProductTradePrice element is not supported in BASIC "
-            "profile line items",
-        )
     if settlement.billing_period is not None:
         raise InvalidProfileError(
             "BASIC",
@@ -1114,6 +1108,8 @@ def _parse_line_item(el: ET.Element, default_currency: str) -> LineItem:
         settlement.tax_category,
         global_id=product.global_id,
         basis_quantity=agreement.basis_quantity,
+        gross_unit_price=agreement.gross_unit_price,
+        gross_allowance_or_charge=agreement.gross_allowance_or_charge,
         allowances=settlement.allowances,
         charges=settlement.charges,
     )
@@ -1252,8 +1248,8 @@ def _parse_product_classification(parent: ET.Element) -> ProductClassification:
 
 
 class _LineAgreement(NamedTuple):
-    gross_unit_price: tuple[Money, OptionalQuantity | None] | None  # EN16931+
-    gross_allowance_or_charge: LineAllowance | LineCharge | None  # EN16931+
+    gross_unit_price: tuple[Money, OptionalQuantity | None] | None
+    gross_allowance_or_charge: LineAllowance | LineCharge | None
     net_price: Money
     basis_quantity: OptionalQuantity | None
     buyer_order_line_id: str | None  # EN16931+

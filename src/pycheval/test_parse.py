@@ -22,6 +22,7 @@ from .money import Money
 from .parse import parse_xml
 from .test_data import (
     basic_einfach,
+    basic_gross_price,
     basic_wl_einfach,
     basic_wl_preceding_invoice,
     en16931_billing_period,
@@ -157,3 +158,8 @@ def test_parse_line_gross_price_allowance() -> None:
     assert line_item.gross_allowance_or_charge == LineAllowance(
         Money("0.05", "EUR")
     )
+
+
+def test_parse_basic_gross_price() -> None:
+    invoice = basic_gross_price()
+    assert parse_xml(generate_xml(invoice)) == invoice

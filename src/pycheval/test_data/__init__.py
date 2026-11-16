@@ -1,4 +1,5 @@
 import datetime
+from dataclasses import replace
 from datetime import date
 from decimal import Decimal
 
@@ -220,6 +221,18 @@ Zahlbar innerhalb 30 Tagen netto bis 04.04.2020, 3% Skonto innerhalb 10 Tagen bi
       """),  # noqa: E501
         ],
     )
+
+
+def basic_gross_price() -> BasicInvoice:
+    invoice = basic_einfach()
+    invoice.line_items = [
+        replace(
+            invoice.line_items[0],
+            gross_unit_price=(Money("10.00", "EUR"), None),
+            gross_allowance_or_charge=LineAllowance(Money("0.10", "EUR")),
+        )
+    ]
+    return invoice
 
 
 def en16931() -> EN16931Invoice:
