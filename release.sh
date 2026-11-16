@@ -46,6 +46,15 @@ rm -rf dist
 
 uv run poe i18n-compile
 uv build
+echo
+
+DIST_FILES=("dist/pycheval-${VERSION}-py3-none-any.whl" "dist/pycheval-${VERSION}.tar.gz")
+for f in "${DIST_FILES[@]}"; do
+    if ! test -f "$f"; then
+        echo -e "\033[0;31m*** Expected build artifact $f not found, aborting\033[0m"
+        exit 1
+    fi
+done
 
 echo -e "\033[0;34m*** Publishing version ${VERSION}\033[0m"
 echo
@@ -53,9 +62,9 @@ echo
 if test "${MODE}" = "run"; then
     git tag "v${VERSION}" -m "Release ${VERSION}"
     git push origin "v${VERSION}"
-    uv publish
+    uv publish "${DIST_FILES[@]}"
 else
-    uv publish --dry-run
+    uv publish --dry-run "${DIST_FILES[@]}"
 fi
 
 echo
