@@ -273,23 +273,30 @@ def _find_date(parent: ET.Element, tag: str) -> date:
     return date
 
 
-def _find_date_optional(parent: ET.Element, tag: str) -> date | None:
+def _find_date_optional(
+    parent: ET.Element, tag: str, *, expect_date_element: bool = False
+) -> date | None:
     """Parse the text of a child element with the given tag as a date.
+
+    If expect_date_element is True, look for a udt:DateString element,
+    otherwise look for udt:DateTimeString.
 
     Return None if the element is not found. Raise InvalidXMLError if the
     element has no valid date.
     """
+    expected_tag = "DateString" if expect_date_element else "DateTimeString"
+
     date_el = parent.find(tag)
     if date_el is None:
         return None
-    dts_el = date_el.find(f"./{{{NS_UDT}}}DateTimeString")
+    dts_el = date_el.find(f"./{{{NS_UDT}}}{expected_tag}")
     if dts_el is None:
-        raise InvalidXMLError(f"DateTimeString element not found in {tag}")
+        raise InvalidXMLError(f"{expected_tag} element not found in {tag}")
     if dts_el.attrib.get("format") != "102":
-        raise InvalidXMLError(f"Invalid format in DateTimeString in {tag}")
+        raise InvalidXMLError(f"Invalid format in {expected_tag} in {tag}")
     text = dts_el.text
     if text is None:
-        raise InvalidXMLError(f"DateTimeString element has no text in {tag}")
+        raise InvalidXMLError(f"{expected_tag} element has no text in {tag}")
     if not _DATE_RE.fullmatch(text):
         raise InvalidXMLError(f"Invalid date: {text}")
     try:
@@ -1719,7 +1726,9 @@ def _parse_tax(el: ET.Element, default_currency: str) -> Tax:
         except ValueError as exc:
             raise InvalidXMLError(str(exc)) from exc
 
-    tax_point_date = _find_date_optional(el, f"./{{{NS_RAM}}}TaxPointDate")
+    tax_point_date = _find_date_optional(
+        el, f"./{{{NS_RAM}}}TaxPointDate", expect_date_element=True
+    )
 
     due_date_type_code_s = _find_text_optional(
         el, f"./{{{NS_RAM}}}DueDateTypeCode"

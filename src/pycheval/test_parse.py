@@ -1,5 +1,6 @@
 from collections.abc import Callable
 from dataclasses import replace
+from datetime import date
 from pathlib import Path
 from typing import Final
 from xml.etree import ElementTree as ET
@@ -119,3 +120,17 @@ def test_parse_payment_means_code(type_code: PaymentMeansCode) -> None:
     parsed_invoice = parse_xml(generate_xml(invoice))
     assert isinstance(parsed_invoice, EN16931Invoice)
     assert parsed_invoice.payment_means == [PaymentMeans(type_code)]
+
+
+def test_parse_tax_point_date_none() -> None:
+    invoice = parse_xml(TEST_DATA_PATH / "EN16931_Einfach.xml")
+    assert isinstance(invoice, EN16931Invoice)
+    assert len(invoice.tax) == 2
+    assert all(tax.tax_point_date is None for tax in invoice.tax)
+
+
+def test_parse_tax_point_date_as_date_string() -> None:
+    invoice = parse_xml(TEST_DATA_PATH / "EN16931_Einfach_TaxDate.xml")
+    assert isinstance(invoice, EN16931Invoice)
+    assert len(invoice.tax) == 2
+    assert all(tax.tax_point_date == date(2018, 3, 1) for tax in invoice.tax)

@@ -56,17 +56,34 @@ def xml_date(date: datetime.date) -> str:
 #
 
 
-def _date_element(
+def _date_time_element(
     parent: ET.Element,
     name: str,
     date: datetime.date,
     *,
     qualified: bool = False,
 ) -> ET.Element:
+    """Generate a DateTimeString element with a date.
+
+    If qualified is True, use the qualified data type namespace, otherwise
+    the unqualified data type namespace.
+    """
     el = ET.SubElement(parent, name)
     prefix = "qdt" if qualified else "udt"
     date_el = ET.SubElement(el, f"{prefix}:DateTimeString", format="102")
-    date_el.text = "{:04d}{:02d}{:02d}".format(date.year, date.month, date.day)
+    date_el.text = xml_date(date)
+    return el
+
+
+def _date_element(
+    parent: ET.Element,
+    name: str,
+    date: datetime.date,
+) -> ET.Element:
+    """Generate a udt:DateString element with a date."""
+    el = ET.SubElement(parent, name)
+    date_el = ET.SubElement(el, "udt:DateString", format="102")
+    date_el.text = xml_date(date)
     return el
 
 
@@ -291,7 +308,7 @@ def _generate_doc(parent: ET.Element, invoice: MinimumInvoice) -> None:
     doc = ET.SubElement(parent, "rsm:ExchangedDocument")
     ET.SubElement(doc, "ram:ID").text = invoice.invoice_number
     ET.SubElement(doc, "ram:TypeCode").text = str(invoice.type_code)
-    _date_element(doc, "ram:IssueDateTime", invoice.invoice_date)
+    _date_time_element(doc, "ram:IssueDateTime", invoice.invoice_date)
     if isinstance(invoice, BasicWLInvoice):
         for note in invoice.notes:
             _note_element(doc, note)
@@ -449,8 +466,8 @@ def _generate_line_settlement(
             start, end = line_item.billing_period
             assert start <= end
             period_el = ET.SubElement(settlement, "ram:BillingSpecifiedPeriod")
-            _date_element(period_el, "ram:StartDateTime", start)
-            _date_element(period_el, "ram:EndDateTime", end)
+            _date_time_element(period_el, "ram:StartDateTime", start)
+            _date_time_element(period_el, "ram:EndDateTime", end)
     for allowance in line_item.allowances:
         _generate_allowance_or_charge(
             settlement,
@@ -491,7 +508,7 @@ def _generate_preceding_invoice(
     doc_el = ET.SubElement(parent, "ram:InvoiceReferencedDocument")
     ET.SubElement(doc_el, "ram:IssuerAssignedID").text = id
     if date is not None:
-        _date_element(
+        _date_time_element(
             doc_el, "ram:FormattedIssueDateTime", date, qualified=True
         )
 
@@ -641,7 +658,7 @@ def _generate_delivery(parent: ET.Element, invoice: MinimumInvoice) -> None:
             supply_el = ET.SubElement(
                 delivery_el, "ram:ActualDeliverySupplyChainEvent"
             )
-            _date_element(
+            _date_time_element(
                 supply_el, "ram:OccurrenceDateTime", invoice.delivery_date
             )
         if invoice.despatch_advice_id is not None:
@@ -695,8 +712,8 @@ def _generate_settlement(parent: ET.Element, invoice: MinimumInvoice) -> None:
                 settlement_el, "ram:BillingSpecifiedPeriod"
             )
             start, end = invoice.billing_period
-            _date_element(billing_period, "ram:StartDateTime", start)
-            _date_element(billing_period, "ram:EndDateTime", end)
+            _date_time_element(billing_period, "ram:StartDateTime", start)
+            _date_time_element(billing_period, "ram:EndDateTime", end)
 
         for allowance in invoice.allowances:
             _generate_allowance_or_charge(
@@ -810,7 +827,7 @@ def _generate_payment_terms(parent: ET.Element, terms: PaymentTerms) -> None:
     if terms.description is not None:
         ET.SubElement(terms_el, "ram:Description").text = terms.description
     if terms.due_date is not None:
-        _date_element(terms_el, "ram:DueDateDateTime", terms.due_date)
+        _date_time_element(terms_el, "ram:DueDateDateTime", terms.due_date)
     if terms.direct_debit_mandate_id is not None:
         ET.SubElement(
             terms_el, "ram:DirectDebitMandateID"

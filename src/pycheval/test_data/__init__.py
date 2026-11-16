@@ -275,7 +275,9 @@ def en16931_billing_period() -> BasicWLInvoice:
     return invoice
 
 
-def en16931_einfach() -> EN16931Invoice:
+def en16931_einfach(
+    *, tax_point_date: datetime.date | None = None
+) -> EN16931Invoice:
     return EN16931Invoice(
         invoice_number="471102",
         type_code=DocumentTypeCode.INVOICE,
@@ -337,12 +339,14 @@ def en16931_einfach() -> EN16931Invoice:
                 Money("275.00", "EUR"),
                 Decimal("7.00"),
                 TaxCategoryCode.STANDARD_RATE,
+                tax_point_date=tax_point_date,
             ),
             Tax(
                 Money("37.62", "EUR"),
                 Money("198.00", "EUR"),
                 Decimal("19.00"),
                 TaxCategoryCode.STANDARD_RATE,
+                tax_point_date=tax_point_date,
             ),
         ],
         tax_total_amounts=[Money("56.87", "EUR")],

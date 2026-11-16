@@ -28,6 +28,9 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
   Contributed by Philipp Lütje.
 - Remove extra `mailto:` prefix from email addresses when generating XML.
   Reported by Hylke van Dijk.
+- Fix `Tax.tax_point_date` generating and expecting a `udt:DateTimeString`
+  element instead of a `udt:DateString` element.
+  Reported by Michal Čihař.
 
 ## 0.3.3 – 2026-02-14
 

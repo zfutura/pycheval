@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from collections.abc import Callable
+from datetime import date
 from pathlib import Path
 
 import pytest
@@ -46,6 +47,25 @@ def test_email_with_mailto(email: str) -> None:
     els = list(root.iter("ram:URIID"))
     assert len(els) == 1
     assert els[0].text == "mailto:test@example.com"
+
+
+def test_tax_point_date_none() -> None:
+    invoice = en16931_einfach(tax_point_date=None)
+    root = generate_et(invoice)
+    assert list(root.iter("ram:TaxPointDate")) == []
+
+
+def test_tax_point_date_is_date_string() -> None:
+    invoice = en16931_einfach(tax_point_date=date(2024, 5, 17))
+    root = generate_et(invoice)
+    els = list(root.iter("ram:TaxPointDate"))
+    assert len(els) == 2
+    for el in els:
+        children = list(el)
+        assert len(children) == 1
+        assert children[0].tag == "udt:DateString"
+        assert children[0].attrib == {"format": "102"}
+        assert children[0].text == "20240517"
 
 
 def _generate_xml(invoice: MinimumInvoice) -> str:
