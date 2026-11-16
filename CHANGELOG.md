@@ -2,7 +2,7 @@
 
 PyCheval adheres to [semantic versioning](https://semver.org/).
 
-## Unreleased
+## 0.4.0 – 2026-11-16
 
 ### Added
 
