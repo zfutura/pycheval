@@ -25,6 +25,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
   schemas, as PDF/A-3 files written by Typst do. The Factur-X schema is now
   added to the existing schema list instead of a second
   `pdfaExtension:schemas` property.
+  Contributed by Philipp Lütje.
 - Remove extra `mailto:` prefix from email addresses when generating XML.
   Reported by Hylke van Dijk.
 
