@@ -4,9 +4,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: PyCheval-X 0.1.0\n"
+"Project-Id-Version: PyCheval-X 0.4.0\n"
 "Report-Msgid-Bugs-To: https://github.com/zfutura/pycheval/issues\n"
-"POT-Creation-Date: 2025-07-26 19:05+0200\n"
+"POT-Creation-Date: 2026-11-16 16:16+0100\n"
 "PO-Revision-Date: 2025-07-26 19:11+0200\n"
 "Last-Translator: Sebastian Rittau <sebastian.rittau@zfutura.de>\n"
 "Language: de\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.17.0\n"
+"Generated-By: Babel 2.18.0\n"
 
 #: src/pycheval/format.py:53
 #, python-brace-format, python-format
@@ -295,138 +295,138 @@ msgstr "Zahlungsart"
 
 #: src/pycheval/format.py:415
 #, python-brace-format
-msgid "SEPA Reference: {}"
-msgstr "SEPA-Referenz: {}"
+msgid "Seller SEPA Creditor ID: {}"
+msgstr "SEPA-Gläubiger-ID des Verkäufers: {}"
 
-#: src/pycheval/format.py:419
+#: src/pycheval/format.py:421
 #, python-brace-format
 msgid "Payment Reference: {}"
 msgstr "Zahlungsreferenz: {}"
 
-#: src/pycheval/format.py:423
+#: src/pycheval/format.py:425
 msgid "Payment Terms"
 msgstr "Zahlungsbedingungen"
 
-#: src/pycheval/format.py:442
+#: src/pycheval/format.py:444
 #, python-brace-format
 msgid "{quantity} {unit}"
 msgstr "{quantity} {unit}"
 
-#: src/pycheval/format.py:451
+#: src/pycheval/format.py:453
 #, python-brace-format
 msgid "{name} ({trading_business_name})"
 msgstr "{name} ({trading_business_name})"
 
-#: src/pycheval/format.py:465
+#: src/pycheval/format.py:467
 #, python-brace-format
 msgid "VAT ID: {}"
 msgstr "USt-ID: {}"
 
-#: src/pycheval/format.py:467
+#: src/pycheval/format.py:469
 #, python-brace-format
 msgid "Tax Number: {}"
 msgstr "Steuernummer: {}"
 
-#: src/pycheval/format.py:469
+#: src/pycheval/format.py:471
 #, python-brace-format
 msgid "ID: {}"
 msgstr "ID: {}"
 
-#: src/pycheval/format.py:471
+#: src/pycheval/format.py:473
 #, python-brace-format
 msgid "IDs: {}"
 msgstr "ID: {}"
 
-#: src/pycheval/format.py:502
+#: src/pycheval/format.py:504
 msgid "Contact:"
 msgstr "Kontakt:"
 
-#: src/pycheval/format.py:508
+#: src/pycheval/format.py:510
 #, python-brace-format
 msgid "  Phone: {phone}"
 msgstr "  Telefon: {phone}"
 
-#: src/pycheval/format.py:517
+#: src/pycheval/format.py:519
 #, python-brace-format
 msgid "{subject_code}: {content}"
 msgstr "{subject_code}: {content}"
 
-#: src/pycheval/format.py:527
+#: src/pycheval/format.py:529
 #, python-brace-format
 msgid "Payment Means: {}"
 msgstr "Zahlungsart: {}"
 
-#: src/pycheval/format.py:534
+#: src/pycheval/format.py:536
 #, python-brace-format
 msgid "BIC: {}"
 msgstr "BIC: {}"
 
-#: src/pycheval/format.py:538
+#: src/pycheval/format.py:540
 #, python-brace-format
 msgid "Credit card: {} ({})"
 msgstr "Kreditkarte: {}"
 
-#: src/pycheval/format.py:540
+#: src/pycheval/format.py:542
 #, python-brace-format
 msgid "Credit card: {}"
 msgstr "Kreditkarte: {}"
 
-#: src/pycheval/format.py:542
+#: src/pycheval/format.py:544
 #, python-brace-format
 msgid "Payer IBAN: {}"
 msgstr "IBAN des Zahlers: {}"
 
-#: src/pycheval/format.py:551
+#: src/pycheval/format.py:553
 #, python-brace-format
 msgid "IBAN: {}"
 msgstr "IBAN: {}"
 
-#: src/pycheval/format.py:553
+#: src/pycheval/format.py:555
 #, python-brace-format
 msgid "Account owner: {}"
 msgstr "Kontoinhaber: {}"
 
-#: src/pycheval/format.py:555
+#: src/pycheval/format.py:557
 #, python-brace-format
 msgid "Bank: {}"
 msgstr "Bank: {}"
 
-#: src/pycheval/format.py:563
+#: src/pycheval/format.py:565
 #, python-brace-format, python-format
 msgid "Due Date: {due_date:%Y-%m-%d}"
 msgstr "Fälligkeitsdatum: {due_date:%d.%m.%Y}"
 
-#: src/pycheval/format.py:567
+#: src/pycheval/format.py:569
 #, python-brace-format
 msgid "Direct Debit Mandate ID: {}"
 msgstr "Mandatsnummer für Lastschrift: {}"
 
-#: src/pycheval/format.py:583
+#: src/pycheval/format.py:585
 #, python-brace-format
 msgid "  Reference Qualifier: {}"
 msgstr "  Referenzqualifizierer: {}"
 
-#: src/pycheval/format.py:588
+#: src/pycheval/format.py:590
 #, python-brace-format
 msgid "  Name: {}"
 msgstr "  Name: {}"
 
-#: src/pycheval/format.py:590
+#: src/pycheval/format.py:592
 #, python-brace-format
 msgid "  URL: {}"
 msgstr "  URL: {}"
 
-#: src/pycheval/format.py:594
+#: src/pycheval/format.py:596
 #, python-brace-format
 msgid "  Attachment: {filename} ({mime_type})"
 msgstr "  Anhang: {filename} ({mime_type})"
 
-#: src/pycheval/format.py:605
+#: src/pycheval/format.py:607
 #, python-brace-format
 msgid "Global ID: {}"
 msgstr "Globale ID: {}"
 
-#: src/pycheval/format.py:608
+#: src/pycheval/format.py:610
 #, python-brace-format
 msgid "{id_type}: {id}"
 msgstr "{id_type}: {id}"
@@ -444,27 +444,27 @@ msgstr "Keine Factur-X-Rechnung in der PDF-Datei gefunden"
 msgid "Invalid relationship for Factur-X Minimum invoice"
 msgstr "Ungültige Beziehung für Factur-X-Minimum-Rechnung"
 
-#: src/pycheval/quantities.py:35
+#: src/pycheval/quantities.py:38
 msgid "unit"
 msgstr "Einheit"
 
-#: src/pycheval/quantities.py:35
+#: src/pycheval/quantities.py:38
 msgid "units"
 msgstr "Einheiten"
 
-#: src/pycheval/quantities.py:36
+#: src/pycheval/quantities.py:39
 msgid "pc"
 msgstr "St."
 
-#: src/pycheval/quantities.py:36
+#: src/pycheval/quantities.py:39
 msgid "pcs"
 msgstr "St."
 
-#: src/pycheval/quantities.py:38
+#: src/pycheval/quantities.py:41
 msgid "day"
 msgstr "Tag"
 
-#: src/pycheval/quantities.py:38
+#: src/pycheval/quantities.py:41
 msgid "days"
 msgstr "Tage"
 
@@ -520,85 +520,87 @@ msgstr "Lieferdatum"
 msgid "Payment Date"
 msgstr "Zahlungsdatum"
 
-#: src/pycheval/type_codes.py:133
+#: src/pycheval/type_codes.py:134
 msgid "General Information"
 msgstr "Allgemeine Informationen"
 
-#: src/pycheval/type_codes.py:134
+#: src/pycheval/type_codes.py:135
 msgid "Comments by Seller"
 msgstr "Bemerkungen des Verkäufers"
 
-#: src/pycheval/type_codes.py:135
+#: src/pycheval/type_codes.py:136
 msgid "Regulatory Information"
 msgstr "Regulatorische Informationen"
 
-#: src/pycheval/type_codes.py:136
+#: src/pycheval/type_codes.py:137
 msgid "Legal Information"
 msgstr "Rechtliche Informationen"
 
-#: src/pycheval/type_codes.py:137
+#: src/pycheval/type_codes.py:138
 msgid "Tax Information"
 msgstr "Steuerinformationen"
 
-#: src/pycheval/type_codes.py:138
+#: src/pycheval/type_codes.py:139
 msgid "Customs Information"
 msgstr "Zollinformationen"
 
-#: src/pycheval/type_codes.py:139
+#: src/pycheval/type_codes.py:140
 msgid "Title"
 msgstr "Titel"
 
-#: src/pycheval/type_codes.py:163
+#: src/pycheval/type_codes.py:168
 msgid "Instrument not defined"
 msgstr "Zahlmethode nicht definiert"
 
-#: src/pycheval/type_codes.py:164
+#: src/pycheval/type_codes.py:169
 msgid "Species"
 msgstr "Bar"
 
-#: src/pycheval/type_codes.py:165
+#: src/pycheval/type_codes.py:170
 msgid "Check"
 msgstr "Scheck"
 
-#: src/pycheval/type_codes.py:166
+#: src/pycheval/type_codes.py:171
 msgid "Transfer"
 msgstr "Überweisung"
 
-#: src/pycheval/type_codes.py:167
+#: src/pycheval/type_codes.py:172
 msgid "Bank Payment"
 msgstr "Bankeinzahlung"
 
-#: src/pycheval/type_codes.py:168
+#: src/pycheval/type_codes.py:173
 msgid "Credit Card"
 msgstr "Kreditkarte"
 
-#: src/pycheval/type_codes.py:169
+#: src/pycheval/type_codes.py:174
 msgid "Direct Debit"
 msgstr "Lastschrift"
 
+#: src/pycheval/type_codes.py:175
 msgid "Credit Card Payment"
 msgstr "Kreditkartenzahlung"
 
-#: src/pycheval/type_codes.py:170
+#: src/pycheval/type_codes.py:176
 msgid "Standing Agreement"
 msgstr "Dauerauftrag"
 
-#: src/pycheval/type_codes.py:171
+#: src/pycheval/type_codes.py:177
 msgid "SEPA Credit Transfer"
 msgstr "SEPA-Überweisung"
 
-#: src/pycheval/type_codes.py:172
+#: src/pycheval/type_codes.py:178
 msgid "SEPA Direct Debit"
 msgstr "SEPA-Lastschrift"
 
+#: src/pycheval/type_codes.py:179
 msgid "Online Payment Service"
 msgstr "Online-Zahlungsdienst"
 
-#: src/pycheval/type_codes.py:173
+#: src/pycheval/type_codes.py:180
 msgid "Report"
 msgstr "Bericht"
 
-#: src/pycheval/type_codes.py:174
+#: src/pycheval/type_codes.py:181
 msgid "Interim Agreement"
 msgstr "Vorläufige Vereinbarung"
 
