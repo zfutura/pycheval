@@ -116,7 +116,7 @@ def _find_indicator(parent: ET.Element, tag: str) -> bool:
     el = parent.find(tag)
     if el is None:
         raise InvalidXMLError(f"Element {tag} not found")
-    indicator = el.find(f"./{{{NS_RAM}}}Indicator")
+    indicator = el.find(f"./{{{NS_UDT}}}Indicator")
     if indicator is None:
         raise InvalidXMLError("Indicator element not found")
     if indicator.text == "true":
@@ -1138,6 +1138,7 @@ def _parse_en16931_line_item(
         global_id=product.global_id,
         basis_quantity=agreement.basis_quantity,
         gross_unit_price=agreement.gross_unit_price,
+        gross_allowance_or_charge=agreement.gross_allowance_or_charge,
         allowances=settlement.allowances,
         charges=settlement.charges,
         note=doc.note,

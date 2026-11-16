@@ -11,13 +11,21 @@ from pycheval.const import NS_RAM
 
 from .exc import NotFacturXError, UnsupportedProfileError, XMLParseError
 from .generate import generate_xml
-from .model import EN16931Invoice, MinimumInvoice, PaymentMeans
+from .model import (
+    EN16931Invoice,
+    EN16931LineItem,
+    LineAllowance,
+    MinimumInvoice,
+    PaymentMeans,
+)
+from .money import Money
 from .parse import parse_xml
 from .test_data import (
     basic_einfach,
     basic_wl_einfach,
     basic_wl_preceding_invoice,
     en16931_einfach,
+    en16931_rechnungskorrektur,
     minimum_rechnung,
 )
 from .type_codes import PaymentMeansCode
@@ -84,6 +92,7 @@ def test_parse_unknown_profile() -> None:
         ("BASIC-WL_Preceding_Invoice.xml", basic_wl_preceding_invoice),
         ("BASIC_Einfach.xml", basic_einfach),
         ("EN16931_Einfach.xml", en16931_einfach),
+        ("EN16931_Rechnungskorrektur.xml", en16931_rechnungskorrektur),
     ],
 )
 def test_parse_invoice(
@@ -136,3 +145,13 @@ def test_parse_tax_point_date_as_date_string() -> None:
     assert isinstance(invoice, EN16931Invoice)
     assert len(invoice.tax) == 2
     assert all(tax.tax_point_date == date(2018, 3, 1) for tax in invoice.tax)
+
+
+def test_parse_line_gross_price_allowance() -> None:
+    invoice = parse_xml(TEST_DATA_PATH / "EN16931_Rechnungskorrektur.xml")
+    assert isinstance(invoice, EN16931Invoice)
+    line_item = invoice.line_items[1]
+    assert isinstance(line_item, EN16931LineItem)
+    assert line_item.gross_allowance_or_charge == LineAllowance(
+        Money("0.05", "EUR")
+    )

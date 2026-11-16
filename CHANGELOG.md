@@ -33,6 +33,10 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
   Reported by Michal Čihař.
 - Fix parsing `FormattedIssueDateTime` elements, which use a
   `qdt:DateTimeString` element instead of `udt:DateTimeString`.
+- Fix parsing allowances and charges, which expected a `ram:Indicator`
+  element instead of `udt:Indicator` in `ChargeIndicator`.
+- Fix `EN16931LineItem.gross_allowance_or_charge` always being `None`
+  when parsing XML.
 
 ## 0.3.3 – 2026-02-14
 
