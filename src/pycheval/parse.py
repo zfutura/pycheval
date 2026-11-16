@@ -835,7 +835,7 @@ def _parse_delivery(parent: ET.Element) -> _TradeDelivery:
             "ApplicableHeaderTradeDelivery element not found"
         )
     ship_to = _parse_trade_party_optional(
-        el, f"./{{{NS_RAM}}}ShipToTradeParty"
+        el, f"./{{{NS_RAM}}}ShipToTradeParty", name_optional=True
     )
     delivery_date = _parse_delivery_date(el)
     despatch_advice_id = _find_ref_doc_id_optional(
@@ -1563,14 +1563,17 @@ def _parse_trade_party(parent: ET.Element, tag: str) -> TradeParty:
 
 
 def _parse_trade_party_optional(
-    parent: ET.Element, tag: str
+    parent: ET.Element, tag: str, *, name_optional: bool = False
 ) -> TradeParty | None:
     party_el = parent.find(tag)
     if party_el is None:
         return None
     ids = _find_all_texts(party_el, f"./{{{NS_RAM}}}ID")
     global_ids = _find_all_ids(party_el, f"./{{{NS_RAM}}}GlobalID")
-    name = _find_text(party_el, f"./{{{NS_RAM}}}Name")
+    if name_optional:
+        name = _find_text_optional(party_el, f"./{{{NS_RAM}}}Name")
+    else:
+        name = _find_text(party_el, f"./{{{NS_RAM}}}Name")
     description = _find_text_optional(party_el, f"./{{{NS_RAM}}}Description")
     legal_org_id, legal_org_name = _parse_legal_org(party_el)
     contact = _parse_trade_contact(party_el)

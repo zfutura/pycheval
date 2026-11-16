@@ -37,6 +37,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
   element instead of `udt:Indicator` in `ChargeIndicator`.
 - Fix `EN16931LineItem.gross_allowance_or_charge` always being `None`
   when parsing XML.
+- Fix parsing `ShipToTradeParty` elements without a `Name` element.
 
 ## 0.3.3 – 2026-02-14
 

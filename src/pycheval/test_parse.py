@@ -24,6 +24,7 @@ from .test_data import (
     basic_einfach,
     basic_wl_einfach,
     basic_wl_preceding_invoice,
+    en16931_billing_period,
     en16931_einfach,
     en16931_rechnungskorrektur,
     minimum_rechnung,
@@ -93,6 +94,7 @@ def test_parse_unknown_profile() -> None:
         ("BASIC_Einfach.xml", basic_einfach),
         ("EN16931_Einfach.xml", en16931_einfach),
         ("EN16931_Rechnungskorrektur.xml", en16931_rechnungskorrektur),
+        ("EN16931_Billing_Period.xml", en16931_billing_period),
     ],
 )
 def test_parse_invoice(
