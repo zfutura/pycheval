@@ -31,6 +31,8 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 - Fix `Tax.tax_point_date` generating and expecting a `udt:DateTimeString`
   element instead of a `udt:DateString` element.
   Reported by Michal Čihař.
+- Fix parsing `FormattedIssueDateTime` elements, which use a
+  `qdt:DateTimeString` element instead of `udt:DateTimeString`.
 
 ## 0.3.3 – 2026-02-14
 

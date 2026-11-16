@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, Any, NamedTuple
 
 from .const import (
     NS_CII,
+    NS_QDT,
     NS_RAM,
     NS_UDT,
     URN_BASIC_PROFILE,
@@ -274,22 +275,29 @@ def _find_date(parent: ET.Element, tag: str) -> date:
 
 
 def _find_date_optional(
-    parent: ET.Element, tag: str, *, expect_date_element: bool = False
+    parent: ET.Element,
+    tag: str,
+    *,
+    expect_date_element: bool = False,
+    qualified: bool = False,
 ) -> date | None:
     """Parse the text of a child element with the given tag as a date.
 
-    If expect_date_element is True, look for a udt:DateString element,
-    otherwise look for udt:DateTimeString.
+    If expect_date_element is True, look for a DateString element,
+    otherwise look for DateTimeString. If qualified is True, look for the
+    element in the qualified date type namespace, otherwise look for it in
+    the unqualified namespace.
 
     Return None if the element is not found. Raise InvalidXMLError if the
     element has no valid date.
     """
+    prefix = NS_QDT if qualified else NS_UDT
     expected_tag = "DateString" if expect_date_element else "DateTimeString"
 
     date_el = parent.find(tag)
     if date_el is None:
         return None
-    dts_el = date_el.find(f"./{{{NS_UDT}}}{expected_tag}")
+    dts_el = date_el.find(f"./{{{prefix}}}{expected_tag}")
     if dts_el is None:
         raise InvalidXMLError(f"{expected_tag} element not found in {tag}")
     if dts_el.attrib.get("format") != "102":
@@ -1538,7 +1546,7 @@ def _parse_referenced_invoices(
 def _parse_referenced_invoice(el: ET.Element) -> tuple[str, date | None]:
     id = _find_text(el, f"./{{{NS_RAM}}}IssuerAssignedID")
     issue_date = _find_date_optional(
-        el, f"./{{{NS_RAM}}}FormattedIssueDateTime"
+        el, f"./{{{NS_RAM}}}FormattedIssueDateTime", qualified=True
     )
     return id, issue_date
 

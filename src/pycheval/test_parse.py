@@ -16,6 +16,7 @@ from .parse import parse_xml
 from .test_data import (
     basic_einfach,
     basic_wl_einfach,
+    basic_wl_preceding_invoice,
     en16931_einfach,
     minimum_rechnung,
 )
@@ -80,6 +81,7 @@ def test_parse_unknown_profile() -> None:
     [
         ("MINIMUM_Rechnung.xml", minimum_rechnung),
         ("BASIC-WL_Einfach.xml", basic_wl_einfach),
+        ("BASIC-WL_Preceding_Invoice.xml", basic_wl_preceding_invoice),
         ("BASIC_Einfach.xml", basic_einfach),
         ("EN16931_Einfach.xml", en16931_einfach),
     ],

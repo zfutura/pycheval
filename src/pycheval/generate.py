@@ -68,8 +68,8 @@ def _date_time_element(
     If qualified is True, use the qualified data type namespace, otherwise
     the unqualified data type namespace.
     """
-    el = ET.SubElement(parent, name)
     prefix = "qdt" if qualified else "udt"
+    el = ET.SubElement(parent, name)
     date_el = ET.SubElement(el, f"{prefix}:DateTimeString", format="102")
     date_el.text = xml_date(date)
     return el
