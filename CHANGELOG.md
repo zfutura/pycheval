@@ -16,6 +16,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
   The `gross_unit_price` and `gross_allowance_or_charge` fields moved from
   `EN16931LineItem` to `LineItem`. Previously, parsing BASIC invoices with
   a `GrossPriceProductTradePrice` element failed.
+- Add an `indent` option to `generate_xml()`.
 
 ### Changed
 

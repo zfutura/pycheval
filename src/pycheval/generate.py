@@ -263,9 +263,12 @@ def generate_et(invoice: MinimumInvoice) -> ET.Element:
     return root
 
 
-def generate_xml(invoice: MinimumInvoice) -> str:
+def generate_xml(invoice: MinimumInvoice, *, indent: bool = False) -> str:
     """
     Generate a Factur-X invoice as XML string.
+
+    If indent is True, indent the generated XML, otherwise, generate a one
+    line string.
 
     >>> from datetime import date
     >>> from decimal import Decimal
@@ -283,10 +286,12 @@ def generate_xml(invoice: MinimumInvoice) -> str:
     ...         grand_total_amount=(Decimal("11900.00"), "EUR"),
     ...         due_payable_amount=(Decimal("11900.00"), "EUR"),
     ... )
-    >>> xml_string = generate(invoice)
+    >>> xml_string = generate_xml(invoice)
     """
 
     root = generate_et(invoice)
+    if indent:
+        ET.indent(root)
     return ET.tostring(root, encoding="unicode", xml_declaration=True)
 
 
@@ -905,6 +910,4 @@ def _generate_summation(parent: ET.Element, invoice: MinimumInvoice) -> None:
 if __name__ == "__main__":
     from ._test_data import TEST_EN16931_INVOICE
 
-    tree = generate_et(TEST_EN16931_INVOICE)
-    ET.indent(tree)
-    print(ET.tostring(tree, encoding="unicode", xml_declaration=True))
+    print(generate_xml(TEST_EN16931_INVOICE, indent=True))
