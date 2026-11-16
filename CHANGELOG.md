@@ -15,6 +15,7 @@ PyCheval adheres to [semantic versioning](https://semver.org/).
 
 ### Changed
 
+- Depend on pypdf `>=7.0.1,<8`.
 - Strip `mailto:` prefix from email addresses when parsing XML.
 
 ### Fixed
